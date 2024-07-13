@@ -19,4 +19,18 @@ public class Users_Service {
         if(!res.isEmpty()) return res.get(0);
         else return new Users();
     }
+
+    public void setUser(Users user){
+        if(!repository.existsByEmail(user.getEmail())) repository.save(user);
+    }
+//
+//    public void removeUser(Users user){
+//        if(!repository.existsByEmail(user.getEmail())){
+//            List<Users> res = repository.findByEmailAndPassword(user.getEmail(),user.getPassword());
+//            if(!res.isEmpty()){
+//                System.out.println(res.get(0).getId());
+//                repository.deleteById(res.get(0).getId());
+//            }
+//        }
+//    }
 }

@@ -8,4 +8,6 @@ public interface Users_Repository extends JpaRepository<Users, Integer> {
 
     //SELECT * FROM users WHERE user_email = ? AND user_password = ?;
     List<Users> findByEmailAndPassword(String email, String password);
+    //Verifica que exista el email
+    Boolean existsByEmail(String email);
 }

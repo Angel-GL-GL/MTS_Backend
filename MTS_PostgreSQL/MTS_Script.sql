@@ -26,9 +26,9 @@ CREATE TABLE stations(
 	station_line INTEGER NOT NULL,
 	station_incident VARCHAR(1000) DEFAULT '-',
 	station_information VARCHAR(1000) DEFAULT '-',
-	station_coord_x NUMERIC(3,6) NOT NULL,
-	station_coord_y NUMERIC(3,6) NOT NULL,
-	station_radius NUMERIC(6,6) NOT NULL,
+	station_coord_x NUMERIC(12,6) NOT NULL,
+	station_coord_y NUMERIC(12,6) NOT NULL,
+	station_radius NUMERIC(12,6) NOT NULL,
 	CONSTRAINT pk_station PRIMARY KEY(station_id),
 	CONSTRAINT fk_stations_lines FOREIGN KEY(station_line)
 		REFERENCES lines(line_id) ON UPDATE CASCADE
@@ -154,3 +154,30 @@ CREATE TABLE reports_evidences_match(
 	CONSTRAINT fk_rem_supervisors FOREIGN KEY(rem_supervisor)
 		REFERENCES supervisors(supervisor_id) ON UPDATE CASCADE
 );
+
+INSERT INTO users(
+	user_name,user_lastname_pat,user_lastname_mat,user_email,
+	user_curp,user_ocupation,user_password,user_phone
+	) VALUES
+	('Juan','Angeles','Santos','jpas@gmail.com',
+	'ansj020121hdfuplp7','estudiante','superju4np','5502020101'),
+	('Sebastian',	'Espinosa',	'Sanchez','ises@gmail.com',
+	'essi010921hdfpupl6','estudiante','sebastitianan','5503030303'),
+	('Andres','Guzman','Cruz','amgc@gmail.com',
+	'guca020815hdfvtal5','estudiante','andr3sGuzguz','5500020200');
+
+INSERT INTO transports(transport_name,transport_speed,transport_price)
+	VALUES ('STC',10.0,5);
+
+INSERT INTO lines(line_name,line_transport,line_speed)
+	VALUES('1','STC',10.0);
+
+INSERT INTO stations(station_name,station_line,
+	station_coord_x,station_coord_y,station_radius)
+	VALUES('Observatorio','1',10.0,10.0,1.0),('Tacubaya','1',15.0,15.0,1.0);
+
+INSERT INTO administrators(admin_user,admin_transport) 
+	VALUES(4,'STC');
+
+INSERT INTO supervisors(supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
+	VALUES(2,1,1,1),(3,1,1,2);
