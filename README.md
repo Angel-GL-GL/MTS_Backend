@@ -75,6 +75,8 @@ Open your browser and access the port you specified in the application.propertie
 ## Endpoints Users and Supervisors API
 Endpoint | Method | Description
 | :---        |    :----:   |          :--- |
+api/sign-up | POST | Create an user account.
+api/sign-in | POST | Login into your login account.
 / | _ | .
 
 ## Endpoints Lines and Stations API
