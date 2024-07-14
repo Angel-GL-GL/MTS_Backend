@@ -63,7 +63,7 @@ CREATE TABLE users(
 
 /*Administradores*/
 CREATE TABLE administrators(
-	admin_id SERIAL NOT NULL,
+	admin_id varchar(10) NOT NULL,
 	admin_user INTEGER NOT NULL,
 	admin_transport VARCHAR(50) NOT NULL,
 	CONSTRAINT pk_administrator PRIMARY KEY(admin_id),
@@ -75,9 +75,9 @@ CREATE TABLE administrators(
 
 /*Supervisores*/
 CREATE TABLE supervisors(
-	supervisor_id SERIAL NOT NULL,
+	supervisor_id varchar(10) NOT NULL,
 	supervisor_user INTEGER NOT NULL,
-	supervisor_admin INTEGER NOT NULL,
+	supervisor_admin varchar(10) NOT NULL,
 	supervisor_line INTEGER NOT NULL,
 	supervisor_station INTEGER NOT NULL,
 	CONSTRAINT pk_supervisor PRIMARY KEY(supervisor_id),
@@ -145,7 +145,7 @@ CREATE TABLE reports_evidences_match(
 	rem_id SERIAL NOT NULL,
 	rem_report INTEGER NOT NULL,
 	rem_evidence INTEGER NOT NULL,
-	rem_supervisor INTEGER NOT NULL,
+	rem_supervisor varchar(10) NOT NULL,
 	CONSTRAINT pk_rem PRIMARY KEY(rem_id),
 	CONSTRAINT fk_rem_reports FOREIGN KEY(rem_report)
 		REFERENCES reports(report_id) ON UPDATE CASCADE,
@@ -176,8 +176,8 @@ INSERT INTO stations(station_name,station_line,
 	station_coord_x,station_coord_y,station_radius)
 	VALUES('Observatorio','1',10.0,10.0,1.0),('Tacubaya','1',15.0,15.0,1.0);
 
-INSERT INTO administrators(admin_user,admin_transport) 
-	VALUES(4,'STC');
+INSERT INTO administrators(admin_id,admin_user,admin_transport) 
+	VALUES('0000000000',4,'STC');
 
-INSERT INTO supervisors(supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
-	VALUES(2,1,1,1),(3,1,1,2);
+INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
+	VALUES('1111111111',2,'0000000000',1,1),('2222222222',3,'0000000000',1,2);
