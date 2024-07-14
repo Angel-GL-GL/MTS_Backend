@@ -40,7 +40,7 @@ public class Users_Controllers {
     //delete
     @RequestMapping(value = "api/delete", method = RequestMethod.DELETE)
     private boolean delete(@RequestBody Users user){
-        service.deleteUsers(user);
+        return service.deleteUsers(user);
     }
 
     //    //Login-supervisor_admin-support
