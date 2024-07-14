@@ -174,10 +174,13 @@ INSERT INTO lines(line_name,line_transport,line_speed)
 
 INSERT INTO stations(station_name,station_line,
 	station_coord_x,station_coord_y,station_radius)
-	VALUES('Observatorio','1',10.0,10.0,1.0),('Tacubaya','1',15.0,15.0,1.0);
+	VALUES('Observatorio','1',10.0,10.0,1.0),('Tacubaya','1',15.0,15.0,1.0),
+	('Juanacatlan','1',20.0,20.0,1.0);
 
 INSERT INTO administrators(admin_id,admin_user,admin_transport) 
 	VALUES('0000000000',4,'STC');
 
 INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
 	VALUES('1111111111',2,'0000000000',1,1),('2222222222',3,'0000000000',1,2);
+
+select * from users;

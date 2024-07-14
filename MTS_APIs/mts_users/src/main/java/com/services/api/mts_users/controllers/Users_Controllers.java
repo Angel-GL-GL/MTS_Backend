@@ -31,9 +31,21 @@ public class Users_Controllers {
         user.setId(res.getId());
         return service.updateUser(user);
     }
+    //Get user
+    @RequestMapping(value = "api/userByEmail/{email}", method = RequestMethod.GET)
+    private ResponseEntity<Users> get(@PathVariable String email){
+        return ResponseEntity.ok(service.getUser(email));
+    }
+
     //delete
-//    @RequestMapping(value = "api/delete", method = RequestMethod.DELETE)
-//    private void delete(@RequestBody Users user){
-//        service.removeUser(user);
+    @RequestMapping(value = "api/delete", method = RequestMethod.DELETE)
+    private boolean delete(@RequestBody Users user){
+        service.deleteUsers(user);
+    }
+
+    //    //Login-supervisor_admin-support
+//    @RequestMapping(value = "api/sup/sign-in", method = RequestMethod.POST)
+//    private ResponseEntity<Users> login_support(@RequestBody Users user){
+//        return ResponseEntity.ok(service.getUser(user.getId(),user.getPassword()));
 //    }
 }

@@ -8,9 +8,11 @@ import lombok.Setter;
 @Entity
 @Table(name = "administrators")
 public class Administrators {
-    @Getter @Setter @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Getter @Setter @Id
     @Column(name = "admin_id")
-    private Integer id;
+    private String admin;
     @Getter @Setter @Column(name = "admin_user")
-    private String name;
+    private Integer user;
+    @Getter @Setter @Column(name = "admin_transport")
+    private String transport;
 }

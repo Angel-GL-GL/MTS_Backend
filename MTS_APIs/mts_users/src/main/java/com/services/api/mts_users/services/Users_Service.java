@@ -20,6 +20,12 @@ public class Users_Service {
         else return new Users();
     }
 
+    public Users getUser(Integer id, String pass){
+        List<Users> res = repository.findByIdAndPassword(id,pass);
+        if(!res.isEmpty()) return res.get(0);
+        else return new Users();
+    }
+
     public boolean setUser(Users user){
         if(repository.existsByEmail(user.getEmail())) return false;
         repository.save(user);
@@ -30,14 +36,22 @@ public class Users_Service {
         repository.save(user);
         return true;
     }
-//
-//    public void removeUser(Users user){
-//        if(!repository.existsByEmail(user.getEmail())){
-//            List<Users> res = repository.findByEmailAndPassword(user.getEmail(),user.getPassword());
-//            if(!res.isEmpty()){
-//                System.out.println(res.get(0).getId());
-//                repository.deleteById(res.get(0).getId());
-//            }
-//        }
-//    }
+
+    public Users getUser(String email){
+        List<Users> res = repository.findByEmail(email);
+        if(!res.isEmpty()){
+            Users user = res.get(0);
+            user.setPassword("---");
+            user.setCurp("---");
+            user.setPhone("---");
+            return user;
+        }
+        else return new Users();
+    }
+
+    public boolean deleteUsers(Users users){
+        Users support = getUser(users.getEmail(), users.getPassword());
+        repository.deleteById(support.getId());
+        return true;
+    }
 }
