@@ -13,13 +13,23 @@ public class Users_Controllers {
     private Users_Service service;
     //Register
     @RequestMapping(value = "api/sign-up", method = RequestMethod.POST)
-    private void register(@RequestBody Users user){
-        service.setUser(user);
+    private boolean register(@RequestBody Users user){
+        boolean res = service.setUser(user);
+        return res;
     }
     //Login
     @RequestMapping(value = "api/sign-in", method = RequestMethod.POST)
     private ResponseEntity<Users> login(@RequestBody Users user){
         return ResponseEntity.ok(service.getUser(user.getEmail(),user.getPassword()));
+    }
+    //Update
+    @RequestMapping(value = "api/update/profile",method = RequestMethod.PUT)
+    private boolean update(@RequestBody Users user){
+        Users res = service.getUser(user.getEmail(),user.getPassword());
+        if(!user.getEmail().equals(res.getEmail())) return false;
+        user.setCurp(res.getCurp());
+        user.setId(res.getId());
+        return service.updateUser(user);
     }
     //delete
 //    @RequestMapping(value = "api/delete", method = RequestMethod.DELETE)

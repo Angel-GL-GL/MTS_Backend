@@ -20,8 +20,15 @@ public class Users_Service {
         else return new Users();
     }
 
-    public void setUser(Users user){
-        if(!repository.existsByEmail(user.getEmail())) repository.save(user);
+    public boolean setUser(Users user){
+        if(repository.existsByEmail(user.getEmail())) return false;
+        repository.save(user);
+        return true;
+    }
+
+    public boolean updateUser(Users user){
+        repository.save(user);
+        return true;
     }
 //
 //    public void removeUser(Users user){
