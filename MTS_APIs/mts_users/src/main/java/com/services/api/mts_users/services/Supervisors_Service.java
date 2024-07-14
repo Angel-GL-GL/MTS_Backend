@@ -40,9 +40,7 @@ public class Supervisors_Service {
     }
 
     public boolean setSupervisor(Supervisors supervisors){
-        if(repository.existsByUser(supervisors.getUser())) return false;
         if(repository.existsByStation(supervisors.getStation())) return false;
-        if(repository.existsBySup(supervisors.getSup())) return false;
         repository.save(supervisors);
         return true;
     }
