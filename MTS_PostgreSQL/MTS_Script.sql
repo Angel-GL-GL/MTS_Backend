@@ -183,4 +183,4 @@ INSERT INTO administrators(admin_id,admin_user,admin_transport)
 INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
 	VALUES('1111111111',2,'0000000000',1,1),('2222222222',3,'0000000000',1,2);
 
-select * from users;
+select * from supervisors;
