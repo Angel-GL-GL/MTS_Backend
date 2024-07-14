@@ -133,7 +133,16 @@ api/administrator/sign-in | POST | Login into your administrator account.
 ### How to create a supervisor account
 - GET request to api/userByEmail/{email}.
 - Save the id field.
-- POST request to api/supervisor/sign-up, supervisor_user field has to store the value from id field from the received json.
+- POST request to api/supervisor/sign-up, user field has to store the value from id field from the received json.
+```shell
+{
+    "sup": "**********",
+    "user": 0,
+    "admin": "**********",
+    "line": 0,
+    "station": 0
+}
+```
 
 ### How to login into a supervisor account
 - POST request to api/supervisor/sign-in. The structure of the json is:
