@@ -78,7 +78,27 @@ Endpoint | Method | Description
 api/sign-up | POST | Create an user account.
 api/sign-in | POST | Login into your login account.
 api/update/profile | PUT | Update user information.
+api/userByEmail/{email} | GET | Get user information by email.
+api/delete | DELETE | Delete user account.
+api/supervisor/sign-up | POST | Create a supervisor account.
+api/supervisor/sign-in | POST | Login into your supervisor account.
+api/supervisor/update/profile | PUT | Update supervisor information.
+api/supervisor/delete/profile | DELETE | Delete supervisor account.
 / | _ | .
+
+### How to create a supervisor account
+- GET request to api/userByEmail/{email}.
+- Save the id field.
+- POST request to api/supervisor/sign-up, supervisor_user field has to store the value from id field from the received json.
+
+### How to login into a supervisor account
+- POST request to api/supervisor/sign-in. The structure of the json is:
+```shell
+{
+    "id": "**********",
+    "password": "***"
+}
+```
 
 ## Endpoints Lines and Stations API
 Endpoint | Method | Description
