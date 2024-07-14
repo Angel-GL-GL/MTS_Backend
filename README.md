@@ -77,6 +77,7 @@ Endpoint | Method | Description
 | :---        |    :----:   |          :--- |
 api/sign-up | POST | Create an user account.
 api/sign-in | POST | Login into your login account.
+api/update/profile | PUT | Update user information.
 / | _ | .
 
 ## Endpoints Lines and Stations API
