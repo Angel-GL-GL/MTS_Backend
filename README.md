@@ -84,7 +84,51 @@ api/supervisor/sign-up | POST | Create a supervisor account.
 api/supervisor/sign-in | POST | Login into your supervisor account.
 api/supervisor/update/profile | PUT | Update supervisor information.
 api/supervisor/delete/profile | DELETE | Delete supervisor account.
-/ | _ | .
+api/administrator/sign-in | POST | Login into your administrator account.
+
+### Structure of api/sign-up 
+```shell
+{
+    "name": "***",
+    "lastname_pat": "***",
+    "lastname_mat": "***",
+    "email": "***",
+    "curp": "******************",
+    "ocuparion": "***",
+    "password": "***",
+    "phone": "**********"
+}
+```
+
+### Structure of api/sign-in
+```shell
+{
+    "email": "***",
+    "password": "***"
+}
+```
+
+### Structure of api/update/profile
+```shell
+{
+    "id":0
+    "name": "***",
+    "lastname_pat": "***",
+    "lastname_mat": "***",
+    "email": "***",
+    "curp": "******************",
+    "ocuparion": "***",
+    "password": "***",
+    "phone": "**********"
+}
+```
+
+### Structure of api/delete
+```shell
+{
+    "id": "***",
+}
+```
 
 ### How to create a supervisor account
 - GET request to api/userByEmail/{email}.
@@ -93,6 +137,33 @@ api/supervisor/delete/profile | DELETE | Delete supervisor account.
 
 ### How to login into a supervisor account
 - POST request to api/supervisor/sign-in. The structure of the json is:
+```shell
+{
+    "id": "**********",
+    "password": "***"
+}
+```
+
+### Structure of api/supervisor/update/profile
+```shell
+{
+    "sup": "**********",
+    "user": 0,
+    "admin": "**********",
+    "line": 0,
+    "station": 0
+}
+```
+
+### Structure of api/supervisor/delete
+```shell
+{
+    "sup": "**********",
+}
+```
+
+### How to login into a administrator account
+- POST request to api/administrator/sign-in. The structure of the json is:
 ```shell
 {
     "id": "**********",
