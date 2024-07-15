@@ -155,6 +155,8 @@ CREATE TABLE reports_evidences_match(
 		REFERENCES supervisors(supervisor_id) ON UPDATE CASCADE
 );
 
+select * from users;
+
 INSERT INTO users(
 	user_name,user_lastname_pat,user_lastname_mat,user_email,
 	user_curp,user_ocupation,user_password,user_phone
