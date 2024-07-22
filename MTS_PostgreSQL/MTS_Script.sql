@@ -1,3 +1,16 @@
+DROP TABLE schedules;
+DROP TABLE reports_evidences_match;
+DROP TABLE evidences;
+DROP TABLE reports;
+DROP TABLE opinions;
+DROP TABLE supervisors;
+DROP TABLE administrators;
+DROP TABLE users;
+DROP TABLE transfers;
+DROP TABLE stations;
+DROP TABLE lines;
+DROP TABLE transports;
+
 /*Medios de transporte*/
 CREATE TABLE transports(
 	transport_name VARCHAR(50) NOT NULL,
@@ -12,8 +25,8 @@ CREATE TABLE lines(
 	line_name VARCHAR(2) NOT NULL,
 	line_transport VARCHAR(50) NOT NULL,
 	line_incident VARCHAR(1000) DEFAULT '-',
-	line_information VARCHAR(1000) DEFAULT '-',
 	line_speed NUMERIC(4,2) NOT NULL DEFAULT 0.0,
+	line_information VARCHAR(1000) DEFAULT '-',
 	CONSTRAINT pk_line PRIMARY KEY(line_id),
 	CONSTRAINT fk_lines_transports FOREIGN KEY(line_transport)
 		REFERENCES transports(transport_name) ON UPDATE CASCADE
@@ -24,11 +37,12 @@ CREATE TABLE stations(
 	station_id SERIAL NOT NULL,
 	station_name VARCHAR(75) NOT NULL,
 	station_line INTEGER NOT NULL,
+	station_coord_x NUMERIC(30,15) NOT NULL,
+	station_coord_y NUMERIC(30,15) NOT NULL,
+	station_radius NUMERIC(30,15) NOT NULL,
 	station_incident VARCHAR(1000) DEFAULT '-',
+	station_services VARCHAR(1000) DEFAULT '-',
 	station_information VARCHAR(1000) DEFAULT '-',
-	station_coord_x NUMERIC(12,6) NOT NULL,
-	station_coord_y NUMERIC(12,6) NOT NULL,
-	station_radius NUMERIC(12,6) NOT NULL,
 	CONSTRAINT pk_station PRIMARY KEY(station_id),
 	CONSTRAINT fk_stations_lines FOREIGN KEY(station_line)
 		REFERENCES lines(line_id) ON UPDATE CASCADE
@@ -40,6 +54,7 @@ CREATE TABLE transfers(
 	transfer_station_a INTEGER NOT NULL,
 	transfer_station_b INTEGER NOT NULL,
 	transfer_distance NUMERIC(3,6) NOT NULL DEFAULT 0.0,
+	transfer_price INTEGER NOT NULL DEFAULT 0.0,
 	CONSTRAINT pk_transfer PRIMARY KEY(transfer_id),
 	CONSTRAINT fk_transfers_stations_a FOREIGN KEY(transfer_station_a)
 		REFERENCES stations(station_id) ON UPDATE CASCADE,
@@ -155,7 +170,17 @@ CREATE TABLE reports_evidences_match(
 		REFERENCES supervisors(supervisor_id) ON UPDATE CASCADE
 );
 
-select * from users;
+/*Horarios de apertura y cierre*/
+CREATE TABLE schedules(
+	schedule_id SERIAL NOT NULL,
+	schedule_open_hour TIME NOT NULL,
+	schedule_close_hour TIME NOT NULL,
+	schedule_day varchar(25) NOT NULL,
+	schedule_line INTEGER NOT NULL,
+	CONSTRAINT pk_schedule PRIMARY KEY(schedule_id),
+	CONSTRAINT fk_schedules_lines FOREIGN KEY(schedule_line)
+		REFERENCES lines(line_id) ON UPDATE CASCADE
+);
 
 INSERT INTO users(
 	user_name,user_lastname_pat,user_lastname_mat,user_email,
@@ -164,25 +189,31 @@ INSERT INTO users(
 	('Juan','Angeles','Santos','jpas@gmail.com',
 	'ansj020121hdfuplp7','estudiante','superju4np','5502020101'),
 	('Sebastian',	'Espinosa',	'Sanchez','ises@gmail.com',
-	'essi010921hdfpupl6','estudiante','sebastitianan','5503030303'),
+	'essi010921hdfpupl6','empleado','sebastitianan','5503030303'),
 	('Andres','Guzman','Cruz','amgc@gmail.com',
-	'guca020815hdfvtal5','estudiante','andr3sGuzguz','5500020200');
+	'guca020821hdfvtal5','empleado','andr3sGuzguz','5500020200'),
+	('Angel','Garcia','Zacarias','aegz@gmail.com',
+	'gaza020121hdftvla4','empleado','passPass_o7','5501010101');
 
-INSERT INTO transports(transport_name,transport_speed,transport_price)
-	VALUES ('STC',10.0,5);
+SELECT * FROM users;
 
-INSERT INTO lines(line_name,line_transport,line_speed)
-	VALUES('1','STC',10.0);
+SELECT * FROM transports;
+
+SELECT * FROM lines;
+
+INSERT INTO administrators(admin_id,admin_user,admin_transport) 
+	VALUES('0000000000',4,'Sistema de Transporte Colectivo Metro');
+
+SELECT * FROM administrators;
+
+SELECT * FROM schedules;
+
+SELECT * FROM stations;
+
+INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
+	VALUES('1111111111',2,'0000000000',1,1),('2222222222',3,'0000000000',1,2);
 
 INSERT INTO stations(station_name,station_line,
 	station_coord_x,station_coord_y,station_radius)
 	VALUES('Observatorio','1',10.0,10.0,1.0),('Tacubaya','1',15.0,15.0,1.0),
 	('Juanacatlan','1',20.0,20.0,1.0),('Chapultepec','1',25.0,25.0,1.0);
-
-INSERT INTO administrators(admin_id,admin_user,admin_transport) 
-	VALUES('0000000000',4,'STC');
-
-INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
-	VALUES('1111111111',2,'0000000000',1,1),('2222222222',3,'0000000000',1,2);
-
-select * from supervisors;
