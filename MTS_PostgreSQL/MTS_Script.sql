@@ -1,4 +1,3 @@
-DROP TABLE schedules;
 DROP TABLE reports_evidences_match;
 DROP TABLE evidences;
 DROP TABLE reports;
@@ -7,6 +6,9 @@ DROP TABLE supervisors;
 DROP TABLE administrators;
 DROP TABLE users;
 DROP TABLE transfers;
+DROP TABLE routes_stations_match;
+DROP TABLE schedules;
+DROP TABLE routes;
 DROP TABLE stations;
 DROP TABLE lines;
 DROP TABLE transports;
@@ -36,16 +38,46 @@ CREATE TABLE lines(
 CREATE TABLE stations(
 	station_id SERIAL NOT NULL,
 	station_name VARCHAR(75) NOT NULL,
-	station_line INTEGER NOT NULL,
 	station_coord_x NUMERIC(30,15) NOT NULL,
 	station_coord_y NUMERIC(30,15) NOT NULL,
-	station_radius NUMERIC(30,15) NOT NULL,
 	station_incident VARCHAR(1000) DEFAULT '-',
 	station_services VARCHAR(1000) DEFAULT '-',
 	station_information VARCHAR(1000) DEFAULT '-',
-	CONSTRAINT pk_station PRIMARY KEY(station_id),
-	CONSTRAINT fk_stations_lines FOREIGN KEY(station_line)
+	CONSTRAINT pk_station PRIMARY KEY(station_id)
+);
+
+/*Rutas*/
+CREATE TABLE routes(
+	route_id SERIAL NOT NULL,
+	route_name varchar(500) NOT NULL,
+	route_line INTEGER NOT NULL,
+	CONSTRAINT pk_route PRIMARY KEY(route_id),
+	CONSTRAINT fk_routes_lines FOREIGN KEY(route_line)
 		REFERENCES lines(line_id) ON UPDATE CASCADE
+);
+
+/*Horarios de apertura y cierre*/
+CREATE TABLE schedules(
+	schedule_id SERIAL NOT NULL,
+	schedule_open_hour TIME NOT NULL,
+	schedule_close_hour TIME NOT NULL,
+	schedule_day varchar(25) NOT NULL,
+	schedule_route INTEGER NOT NULL,
+	CONSTRAINT pk_schedule PRIMARY KEY(schedule_id),
+	CONSTRAINT fk_schedules_routes FOREIGN KEY(schedule_route)
+		REFERENCES routes(route_id) ON UPDATE CASCADE
+);
+
+/*Match de rutas y estaciones*/
+CREATE TABLE routes_stations_match(
+	rsm_id SERIAL NOT NULL,
+	rsm_route INTEGER NOT NULL,
+	rsm_station INTEGER NOT NULL,
+	CONSTRAINT pk_rsm PRIMARY KEY(rsm_id),
+	CONSTRAINT fk_rsm_route FOREIGN KEY(rsm_route)
+		REFERENCES routes(route_id) ON UPDATE CASCADE,
+	CONSTRAINT fk_rsm_station FOREIGN KEY(rsm_station)
+		REFERENCES stations(station_id) ON UPDATE CASCADE
 );
 
 /*Transbordos*/
@@ -168,18 +200,6 @@ CREATE TABLE reports_evidences_match(
 		REFERENCES evidences(evidence_id) ON UPDATE CASCADE,
 	CONSTRAINT fk_rem_supervisors FOREIGN KEY(rem_supervisor)
 		REFERENCES supervisors(supervisor_id) ON UPDATE CASCADE
-);
-
-/*Horarios de apertura y cierre*/
-CREATE TABLE schedules(
-	schedule_id SERIAL NOT NULL,
-	schedule_open_hour TIME NOT NULL,
-	schedule_close_hour TIME NOT NULL,
-	schedule_day varchar(25) NOT NULL,
-	schedule_line INTEGER NOT NULL,
-	CONSTRAINT pk_schedule PRIMARY KEY(schedule_id),
-	CONSTRAINT fk_schedules_lines FOREIGN KEY(schedule_line)
-		REFERENCES lines(line_id) ON UPDATE CASCADE
 );
 
 INSERT INTO users(
