@@ -42,7 +42,7 @@ CREATE TABLE stations(
 	station_coord_y NUMERIC(30,15) NOT NULL,
 	station_incident VARCHAR(1000) DEFAULT '-',
 	station_services VARCHAR(1000) DEFAULT '-',
-	station_information VARCHAR(1000) DEFAULT '-',
+	station_information VARCHAR(2000) DEFAULT '-',
 	CONSTRAINT pk_station PRIMARY KEY(station_id)
 );
 
@@ -226,6 +226,8 @@ INSERT INTO administrators(admin_id,admin_user,admin_transport)
 
 SELECT * FROM administrators;
 
+SELECT * FROM routes;
+
 SELECT * FROM schedules;
 
 SELECT * FROM stations;
@@ -233,7 +235,6 @@ SELECT * FROM stations;
 INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
 	VALUES('1111111111',2,'0000000000',1,1),('2222222222',3,'0000000000',1,2);
 
-INSERT INTO stations(station_name,station_line,
-	station_coord_x,station_coord_y,station_radius)
-	VALUES('Observatorio','1',10.0,10.0,1.0),('Tacubaya','1',15.0,15.0,1.0),
-	('Juanacatlan','1',20.0,20.0,1.0),('Chapultepec','1',25.0,25.0,1.0);
+SELECT * FROM routes_stations_match;
+
+SELECT * FROM transfers;
