@@ -38,12 +38,15 @@ CREATE TABLE lines(
 CREATE TABLE stations(
 	station_id SERIAL NOT NULL,
 	station_name VARCHAR(75) NOT NULL,
+	station_line INTEGER NOT NULL,
 	station_coord_x NUMERIC(30,15) NOT NULL,
 	station_coord_y NUMERIC(30,15) NOT NULL,
 	station_incident VARCHAR(1000) DEFAULT '-',
 	station_services VARCHAR(1000) DEFAULT '-',
 	station_information VARCHAR(2000) DEFAULT '-',
-	CONSTRAINT pk_station PRIMARY KEY(station_id)
+	CONSTRAINT pk_station PRIMARY KEY(station_id),
+	CONSTRAINT fk_station_lines FOREIGN KEY(station_line)
+		REFERENCES lines(line_id) ON UPDATE CASCADE
 );
 
 /*Rutas*/
@@ -85,7 +88,6 @@ CREATE TABLE transfers(
 	transfer_id SERIAL NOT NULL,
 	transfer_station_a INTEGER NOT NULL,
 	transfer_station_b INTEGER NOT NULL,
-	transfer_distance NUMERIC(3,6) NOT NULL DEFAULT 0.0,
 	transfer_price INTEGER NOT NULL DEFAULT 0.0,
 	CONSTRAINT pk_transfer PRIMARY KEY(transfer_id),
 	CONSTRAINT fk_transfers_stations_a FOREIGN KEY(transfer_station_a)
@@ -237,4 +239,27 @@ INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,superviso
 
 SELECT * FROM routes_stations_match;
 
-SELECT * FROM transfers;
+SELECT station_name
+FROM stations
+GROUP BY station_name
+HAVING COUNT(DISTINCT station_line) > 1;
+
+SELECT *
+FROM stations
+WHERE station_name IN (
+    SELECT station_name
+    FROM stations
+    GROUP BY station_name
+    HAVING COUNT(DISTINCT station_line) > 1
+);
+
+SELECT *
+FROM stations
+WHERE station_name IN (
+    SELECT station_name
+    FROM stations
+    GROUP BY station_name
+    HAVING COUNT(DISTINCT station_line) > 1
+) AND station_name = 'name';
+
+SELECT transfer FROM transfers;
