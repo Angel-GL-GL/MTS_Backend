@@ -17,4 +17,4 @@ buildNumber.properties
 .classpath
 
 
-MTS_APIs\mts_users\src\main\resources\application.properties
+/MTS_APIs/mts_users/src/main/resources/application.properties
