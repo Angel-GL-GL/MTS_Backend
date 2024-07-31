@@ -264,4 +264,4 @@ WHERE station_name IN (
     HAVING COUNT(DISTINCT station_line) > 1
 ) AND station_name = 'name';
 
-SELECT transfer FROM transfers;
+SELECT * FROM transfers;
