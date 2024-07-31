@@ -5,17 +5,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "supervisors")
 public class Supervisors {
-    @Getter @Setter @Id
+    @Id
     @Column(name = "supervisor_id")
     private String sup;
-    @Getter @Setter @Column(name = "supervisor_user")
+    @Column(name = "supervisor_user")
     private Integer user;
-    @Getter @Setter @Column(name = "supervisor_admin")
+    @Column(name = "supervisor_admin")
     private String admin;
-    @Getter @Setter @Column(name = "supervisor_line")
+    @Column(name = "supervisor_line")
     private Integer line;
-    @Getter @Setter @Column(name = "supervisor_station")
+    @Column(name = "supervisor_station")
     private Integer station;
 }

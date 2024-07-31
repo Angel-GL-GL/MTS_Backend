@@ -237,6 +237,8 @@ SELECT * FROM stations;
 INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
 	VALUES('1111111111',2,'0000000000',1,1),('2222222222',3,'0000000000',1,2);
 
+SELECT * FROM supervisors;
+
 SELECT * FROM routes_stations_match;
 
 SELECT station_name
