@@ -7,7 +7,7 @@ public interface Stations_Repository extends JpaRepository<Stations,Integer>{
     //SELECT * FROM stations WHERE station_line = ?;
     List<Stations> findByLine(Integer line);
     //SELECT * FROM stations WHERE station_name = ? AND station_line = ?;
-    List<Stations> findByNameAndLine(String name, Integer Line);
+    Stations findByNameAndLine(String name, Integer Line);
     //SELECT * FROM stations WHERE station_incident = ?;
     List<Stations> findByIncident(String incident);
 }
