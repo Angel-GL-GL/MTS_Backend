@@ -23,7 +23,7 @@ public class Routes_Controllers {
         return ResponseEntity.ok(service.getRoute(route));
     }
 
-    @RequestMapping(value = "api/lines/routes/{line}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/lines/{line}/routes", method = RequestMethod.GET)
     private ResponseEntity<List<Routes>> getRoutesLines(@PathVariable Integer line){
         return ResponseEntity.ok(service.getAllRoutesByLine(line));
     }

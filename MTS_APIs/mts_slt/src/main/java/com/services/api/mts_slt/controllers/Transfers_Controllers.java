@@ -21,7 +21,7 @@ public class Transfers_Controllers {
     @Autowired
     private RSMs_Service rsms_service;
 
-    @RequestMapping(value = "api/stations/transfers/{station}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/stations/{station}/transfers", method = RequestMethod.GET)
     private ResponseEntity<List<Stations>> getTransfersStation(@PathVariable Integer station){
         List<Transfers> transfers = service.getAllTransfersByStation(station);
 
@@ -40,7 +40,7 @@ public class Transfers_Controllers {
         return ResponseEntity.ok(stations);
     }
 
-    @RequestMapping(value = "api/routes/transfers/{route}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/routes/{route}/transfers", method = RequestMethod.GET)
     private ResponseEntity<List<Stations>> getTransfersRoute(@PathVariable Integer route){
         List<RSMs> rsms = rsms_service.getAllRSMsByRoute(route);
 

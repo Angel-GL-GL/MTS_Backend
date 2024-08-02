@@ -3,18 +3,21 @@ package com.services.api.mts_slt.services;
 import com.services.api.mts_slt.models.Lines;
 import com.services.api.mts_slt.repositories.Lines_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class Lines_Service {
     @Autowired
     private Lines_Repository repository;
 
-    public List<Lines> getAllLines(){return repository.findAll();}
+    public List<Lines> getAllLines(){return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));}
 
     public Lines getLine(Integer id){
         Optional<Lines> os = repository.findById(id);
@@ -27,19 +30,28 @@ public class Lines_Service {
 
     public List<Lines> getAllLinesByTransport(String transport){
         List<Lines> res = repository.findByTransport(transport);
-        if(!res.isEmpty()) return res;
-        else return new ArrayList<>();
+        if(res.isEmpty()) return new ArrayList<>();
+        res.sort(Comparator.comparing(Lines::getId));
+        return res;
     }
 
     public List<Lines> getAllLinesByIncident(String incident){
         List<Lines> res = repository.findByIncident(incident);
-        if(!res.isEmpty()) return res;
-        else return new ArrayList<>();
+        if(res.isEmpty()) return new ArrayList<>();
+        res.sort(Comparator.comparing(Lines::getId));
+        return res;
     }
 
-    public List<Lines> getAllLinesBySpeed(BigDecimal speed){
-        List<Lines> res = repository.findBySpeed(speed);
-        if(!res.isEmpty()) return res;
-        else return new ArrayList<>();
+    public List<Lines> getAllLinesBySpeed(){
+        List<Lines> res = repository.findAll();
+        res = res.stream()
+                .filter(line -> line.getSpeed().compareTo(BigDecimal.ZERO) != 0)
+                .collect(Collectors.toList());
+        res.sort(Comparator.comparing(Lines::getId));
+        return res;
+    }
+
+    public void updateIncident(Lines line){
+        repository.save(line);
     }
 }

@@ -22,7 +22,7 @@ public class Schedules_Controllers {
     @Autowired
     private Transports_Service transports_service;
 
-    @RequestMapping(value = "api/station/schedules/{station}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/stations/{station}/schedules", method = RequestMethod.GET)
     private ResponseEntity<ArrayList<ScheduleHelper>> getSchedulesStation(@PathVariable Integer station){
         List<RSMs> matches = rsms_service.getAllRSMsByStation(station);
 
@@ -48,7 +48,7 @@ public class Schedules_Controllers {
         return ResponseEntity.ok(res);
     }
 
-    @RequestMapping(value = "api/route/schedules/{route}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/routes/{route}/schedules", method = RequestMethod.GET)
     private ResponseEntity<ScheduleHelper> getSchedulesRoute(@PathVariable Integer route){
         List<Schedules> scs = service.getAllSchedulesByRoute(route);
 
