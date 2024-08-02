@@ -3,8 +3,10 @@ package com.services.api.mts_slt.services;
 import com.services.api.mts_slt.models.Stations;
 import com.services.api.mts_slt.repositories.Stations_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +15,7 @@ public class Stations_Service {
     @Autowired
     private Stations_Repository repository;
 
-    public List<Stations> getAllStations(){return repository.findAll();}
+    public List<Stations> getAllStations(){return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));}
 
     public Stations getStation(Integer id){
         Optional<Stations> os = repository.findById(id);
@@ -26,19 +28,26 @@ public class Stations_Service {
 
     public List<Stations> getStations(String name){
         List<Stations> res = repository.findByName(name);
-        if(!res.isEmpty()) return res;
-        return new ArrayList<>();
+        if(res.isEmpty()) return new ArrayList<>();
+        res.sort(Comparator.comparing(Stations::getId));
+        return res;
     }
 
     public List<Stations> getAllStationsByLine(Integer line){
         List<Stations> res = repository.findByLine(line);
-        if(!res.isEmpty()) return res;
-        return new ArrayList<>();
+        if(res.isEmpty()) return new ArrayList<>();
+        res.sort(Comparator.comparing(Stations::getId));
+        return res;
     }
 
     public List<Stations> getAllStationsByIncident(String incident){
         List<Stations> res = repository.findByIncident(incident);
-        if(!res.isEmpty()) return res;
-        return new ArrayList<>();
+        if(res.isEmpty()) return new ArrayList<>();
+        res.sort(Comparator.comparing(Stations::getId));
+        return res;
+    }
+
+    public void updateIncident(Stations stations){
+        repository.save(stations);
     }
 }
