@@ -24,6 +24,12 @@ public class Stations_Service {
         return repository.findByNameAndLine(name,line);
     }
 
+    public List<Stations> getStations(String name){
+        List<Stations> res = repository.findByName(name);
+        if(!res.isEmpty()) return res;
+        return new ArrayList<>();
+    }
+
     public List<Stations> getAllStationsByLine(Integer line){
         List<Stations> res = repository.findByLine(line);
         if(!res.isEmpty()) return res;

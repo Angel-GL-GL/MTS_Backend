@@ -22,8 +22,8 @@ public class Schedules_Controllers {
     @Autowired
     private Transports_Service transports_service;
 
-    @RequestMapping(value = "api/schedules/{station}", method = RequestMethod.GET)
-    private ResponseEntity<ArrayList<ScheduleHelper>> getSchedules(@PathVariable Integer station){
+    @RequestMapping(value = "api/station/schedules/{station}", method = RequestMethod.GET)
+    private ResponseEntity<ArrayList<ScheduleHelper>> getSchedulesStation(@PathVariable Integer station){
         List<RSMs> matches = rsms_service.getAllRSMsByStation(station);
 
         if(matches.isEmpty()) return ResponseEntity.ok(new ArrayList<ScheduleHelper>());
@@ -46,5 +46,25 @@ public class Schedules_Controllers {
         }
 
         return ResponseEntity.ok(res);
+    }
+
+    @RequestMapping(value = "api/route/schedules/{route}", method = RequestMethod.GET)
+    private ResponseEntity<ScheduleHelper> getSchedulesRoute(@PathVariable Integer route){
+        List<Schedules> scs = service.getAllSchedulesByRoute(route);
+
+        if(scs.isEmpty()) return ResponseEntity.ok(new ScheduleHelper());
+
+        ScheduleHelper schedules = new ScheduleHelper();
+        schedules.add(scs);
+        Routes r = routes_service.getRoute(route);
+        Lines l = lines_service.getLine(r.getLine());
+        Transports t = transports_service.getTransport(l.getTransport());
+        RouteHelper rh = new RouteHelper();
+        rh.setRoutes(r.getName());
+        rh.setLines(l.getName());
+        rh.setTransports(t.getName());
+        schedules.add(rh);
+
+        return ResponseEntity.ok(schedules);
     }
 }

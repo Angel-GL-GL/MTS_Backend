@@ -6,6 +6,8 @@ import java.util.List;
 public interface Stations_Repository extends JpaRepository<Stations,Integer>{
     //SELECT * FROM stations WHERE station_line = ?;
     List<Stations> findByLine(Integer line);
+    //SELECT * FROM stations WHERE station_name = ?;
+    List<Stations> findByName(String name);
     //SELECT * FROM stations WHERE station_name = ? AND station_line = ?;
     Stations findByNameAndLine(String name, Integer Line);
     //SELECT * FROM stations WHERE station_incident = ?;

@@ -8,4 +8,8 @@ public interface Transfers_Repository extends JpaRepository<Transfers,Integer>{
     List<Transfers> findByA(Integer a);
     //SELECT * FROM transfers WHERE transfer_station_b = ?;
     List<Transfers> findByB(Integer b);
+    //Verifica que exista un registro con la estación en A
+    Boolean existsByA(Integer a);
+    //Verifica que exista un registro con la estación en B
+    Boolean existsByB(Integer b);
 }

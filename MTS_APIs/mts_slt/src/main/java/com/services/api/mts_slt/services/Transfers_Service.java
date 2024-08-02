@@ -26,4 +26,8 @@ public class Transfers_Service {
         fusion.addAll(res_b);
         return fusion;
     }
+
+    public Boolean hasTransfer(Integer station){
+        return repository.existsByA(station) || repository.existsByB(station);
+    }
 }
