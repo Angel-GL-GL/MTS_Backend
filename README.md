@@ -183,7 +183,43 @@ api/administrator/sign-in | POST | Login into your administrator account.
 ## Endpoints Lines and Stations API
 Endpoint | Method | Description
 | :---        |    :----:   |          :--- |
-/ | _ | .
+api/transports | GET | Get all transports.
+api/lines | GET | Get all the lines.
+api/lines/{line} | GET | Get a line by Id.
+api/lines/speeds | GET | Get all lines with speed > 0.
+api/transports/lines | GET | Get all lines of the transport.
+api/lines/incidents/{in} | GET | Get all the lines that have the incident.
+api/lines/update/incident | PUT | Update the incident of the line.
+api/routes | GET | Get all routes.
+api/routes/{route} | GET | Get a route by Id.
+api/lines/{line}/routes | GET | Get all the routes of a line.
+api/stations | GET | Get all the stations.
+api/stations/{station} | GET | Get a station by Id.
+api/lines/{line}/stations | GET | Get all stations of a line.
+api/routes/{route}/stations | GET | Get all stations of a route.
+api/stations/incidents/{in} | GET | Get all the stations that have the incident.
+api/stations/update/incident | PUT | Update the incident of the station.
+api/stations/{station}/transfers | GET | Get all transfers of a station.
+api/routes/{route}/transfers | GET | Get all the transfers of a route.
+api/stations/{station}/schedules | GET | Get all the schedules of the station.
+api/routes/{route}/schedules | GET | Get all the schedules of the route.
+
+### Structure of api/lines/update/incident
+```shell
+{
+    "id": 0,
+    "incident":"****************",
+    "speed": 0.0
+}
+```
+
+### Structure of api/stations/update/incident
+```shell
+{
+    "id": 0,
+    "incident":"****************"
+}
+```
 
 ## Endpoints Reports API
 Endpoint | Method | Description
