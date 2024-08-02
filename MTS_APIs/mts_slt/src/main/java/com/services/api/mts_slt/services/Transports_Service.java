@@ -12,9 +12,9 @@ import java.util.Optional;
 public class Transports_Service {
     @Autowired
     private Transports_Repository repository;
-
+    //Obtener transportes
     public List<Transports> getAllTransports(){return repository.findAll();}
-
+    //Obtener transporte
     public Transports getTransport(String name){
         Optional<Transports> os = repository.findById(name);
         return os.orElseGet(Transports::new);

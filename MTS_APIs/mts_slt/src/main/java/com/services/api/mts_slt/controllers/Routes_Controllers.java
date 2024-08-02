@@ -12,17 +12,17 @@ import java.util.List;
 public class Routes_Controllers {
     @Autowired
     private Routes_Service service;
-
+    //Rutas
     @RequestMapping(value = "api/routes", method = RequestMethod.GET)
     private ResponseEntity<List<Routes>> getAll(){
         return ResponseEntity.ok(service.getAllRoutes());
     }
-
+    //Ruta
     @RequestMapping(value = "api/routes/{route}", method = RequestMethod.GET)
     private ResponseEntity<Routes> getRouteID(@PathVariable Integer route){
         return ResponseEntity.ok(service.getRoute(route));
     }
-
+    //Rutas por línea
     @RequestMapping(value = "api/lines/{line}/routes", method = RequestMethod.GET)
     private ResponseEntity<List<Routes>> getRoutesLines(@PathVariable Integer line){
         return ResponseEntity.ok(service.getAllRoutesByLine(line));

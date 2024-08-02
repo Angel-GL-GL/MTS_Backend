@@ -11,7 +11,7 @@ import java.util.List;
 public class Transports_Controllers {
     @Autowired
     private Transports_Service service;
-
+    //Obtiene transportes
     @RequestMapping(value = "api/transports", method = RequestMethod.GET)
     private ResponseEntity<List<Transports>> getTransports(){
         return ResponseEntity.ok(service.getAllTransports());

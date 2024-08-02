@@ -21,7 +21,7 @@ public class Schedules_Controllers {
     private Lines_Service lines_service;
     @Autowired
     private Transports_Service transports_service;
-
+    //Horarios por estación
     @RequestMapping(value = "api/stations/{station}/schedules", method = RequestMethod.GET)
     private ResponseEntity<ArrayList<ScheduleHelper>> getSchedulesStation(@PathVariable Integer station){
         List<RSMs> matches = rsms_service.getAllRSMsByStation(station);
@@ -47,7 +47,7 @@ public class Schedules_Controllers {
 
         return ResponseEntity.ok(res);
     }
-
+    //Horarios por ruta
     @RequestMapping(value = "api/routes/{route}/schedules", method = RequestMethod.GET)
     private ResponseEntity<ScheduleHelper> getSchedulesRoute(@PathVariable Integer route){
         List<Schedules> scs = service.getAllSchedulesByRoute(route);

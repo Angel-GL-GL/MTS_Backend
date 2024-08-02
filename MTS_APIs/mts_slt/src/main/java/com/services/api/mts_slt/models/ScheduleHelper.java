@@ -7,6 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
+//Clase solamente para ayuda en los json de horarios
 public class ScheduleHelper {
     private ArrayList<RouteHelper> routeHelpers;
     private ArrayList<Schedules> schedules;

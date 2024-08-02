@@ -12,33 +12,33 @@ import java.util.List;
 public class Supervisors_Service {
     @Autowired
     private Supervisors_Repository repository;
-
+    //Supervisores
     public List<Supervisors> getAllSupervisors(){return repository.findAll();}
-
+    //Supervisor
     public Supervisors getSup(String id){
         List<Supervisors> res = repository.findBySup(id);
         if(!res.isEmpty()) return res.get(0);
         return new Supervisors();
     }
-
+    //Supervisores del admin
     public List<Supervisors> getAllSupervisors_Admin(String admin){
         List<Supervisors> res = repository.findByAdmin(admin);
         if(!res.isEmpty()) return res;
         return new ArrayList<>();
     }
-
+    //Supervisores de la línea
     public List<Supervisors> getAllSupervisors_Line(Integer line){
         List<Supervisors> res = repository.findByLine(line);
         if(!res.isEmpty()) return res;
         return new ArrayList<>();
     }
-
+    //Supervisores de la estación
     public List<Supervisors> getAllSupervisors_Station(Integer station){
         List<Supervisors> res = repository.findByStation(station);
         if(!res.isEmpty()) return res;
         return new ArrayList<>();
     }
-
+    //guardar
     public boolean setSupervisor(Supervisors supervisors){
         if(repository.existsByStation(supervisors.getStation())) return false;
         if(repository.existsByUser(supervisors.getUser())) return false;
@@ -46,12 +46,12 @@ public class Supervisors_Service {
         repository.save(supervisors);
         return true;
     }
-
+    //actualizar
     public boolean updateSupervisor(Supervisors supervisors){
         repository.save(supervisors);
         return true;
     }
-
+    //Borrar
     public boolean deleteSupervisor(Supervisors supervisors){
         repository.deleteById(supervisors.getSup());
         return true;

@@ -12,14 +12,14 @@ import java.util.Optional;
 public class Schedules_Service {
     @Autowired
     private Schedules_Repository repository;
-
+    //Horarios
     public List<Schedules> getAllSchedules(){return repository.findAll();}
-
+    //Obtener horario
     public Schedules getSchedule(Integer id){
         Optional<Schedules> os = repository.findById(id);
         return os.orElseGet(Schedules::new);
     }
-
+    //Horarios ruta
     public List<Schedules> getAllSchedulesByRoute(Integer route){
         List<Schedules> res = repository.findByRoute(route);
 

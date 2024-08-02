@@ -13,13 +13,13 @@ import java.util.Optional;
 public class Routes_Service {
     @Autowired
     private Routes_Repository repository;
-
+    //Rutas
     public List<Routes> getAllRoutes(){return repository.findAll();}
-
+    //Ruta
     public Routes getRoute(Integer id){
         return repository.findById(id).orElseGet(Routes::new);
     }
-
+    //Rutas por línea
     public List<Routes> getAllRoutesByLine(Integer line){
         List<Routes> res = repository.findByLine(line);
         if(!res.isEmpty()) return res;

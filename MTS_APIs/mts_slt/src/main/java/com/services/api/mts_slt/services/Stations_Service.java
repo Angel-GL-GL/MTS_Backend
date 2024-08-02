@@ -14,9 +14,9 @@ import java.util.Optional;
 public class Stations_Service {
     @Autowired
     private Stations_Repository repository;
-
+    //Estaciones
     public List<Stations> getAllStations(){return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));}
-
+    //Obtiene estación
     public Stations getStation(Integer id){
         Optional<Stations> os = repository.findById(id);
         return os.orElseGet(Stations::new);
@@ -25,28 +25,28 @@ public class Stations_Service {
     public Stations getStation(String name, Integer line){
         return repository.findByNameAndLine(name,line);
     }
-
+    //Obtiene estaciones con un nombre
     public List<Stations> getStations(String name){
         List<Stations> res = repository.findByName(name);
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(Stations::getId));
         return res;
     }
-
+    //Estaciones de una línea
     public List<Stations> getAllStationsByLine(Integer line){
         List<Stations> res = repository.findByLine(line);
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(Stations::getId));
         return res;
     }
-
+    //Estaciones con un incidente
     public List<Stations> getAllStationsByIncident(String incident){
         List<Stations> res = repository.findByIncident(incident);
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(Stations::getId));
         return res;
     }
-
+    //Actualizar
     public void updateIncident(Stations stations){
         repository.save(stations);
     }

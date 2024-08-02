@@ -11,32 +11,32 @@ import java.util.List;
 public class Users_Service {
     @Autowired
     private Users_Repository repository;
-
+    //Usuarios
     public List<Users> getAllUsers(){return repository.findAll();}
-
+    //Usuario por correo y contraseña
     public Users getUser(String email, String pass){
         List<Users> res = repository.findByEmailAndPassword(email,pass);
         if(!res.isEmpty()) return res.get(0);
         else return new Users();
     }
-
+    //Usuario por id y pass
     public Users getUser(Integer id, String pass){
         List<Users> res = repository.findByIdAndPassword(id,pass);
         if(!res.isEmpty()) return res.get(0);
         else return new Users();
     }
-
+    //Guardar
     public boolean setUser(Users user){
         if(repository.existsByEmail(user.getEmail())) return false;
         repository.save(user);
         return true;
     }
-
+    //Actualizar
     public boolean updateUser(Users user){
         repository.save(user);
         return true;
     }
-
+    //usuario por correo
     public Users getUser(String email){
         List<Users> res = repository.findByEmail(email);
         if(!res.isEmpty()){
@@ -48,7 +48,7 @@ public class Users_Service {
         }
         else return new Users();
     }
-
+    //Borrar
     public boolean deleteUsers(Users users){
         Users support = getUser(users.getEmail(), users.getPassword());
         repository.deleteById(support.getId());

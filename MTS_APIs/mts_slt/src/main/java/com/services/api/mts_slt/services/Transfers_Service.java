@@ -10,9 +10,9 @@ import java.util.List;
 public class Transfers_Service {
     @Autowired
     private Transfers_Repository repository;
-
+    //Obtener todos los transbordos
     public List<Transfers> getAllTransfers(){return repository.findAll();};
-
+    //Todos los transbordos de una estación
     public List<Transfers> getAllTransfersByStation(Integer station){
         List<Transfers> res_a = repository.findByA(station);
         List<Transfers> res_b = repository.findByB(station);
@@ -26,7 +26,7 @@ public class Transfers_Service {
         fusion.addAll(res_b);
         return fusion;
     }
-
+    //Tiene transbordo?
     public Boolean hasTransfer(Integer station){
         return repository.existsByA(station) || repository.existsByB(station);
     }
