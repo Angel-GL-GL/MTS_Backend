@@ -23,7 +23,7 @@ CREATE TABLE transports(
 /*Lineas*/
 CREATE TABLE lines(
 	line_id SERIAL NOT NULL,
-	line_name VARCHAR(2) NOT NULL,
+	line_name VARCHAR(30) NOT NULL,
 	line_transport VARCHAR(50) NOT NULL,
 	line_incident VARCHAR(1000) DEFAULT '-',
 	line_speed NUMERIC(4,2) NOT NULL DEFAULT 0.0,
