@@ -16,6 +16,4 @@ public class Transports {
     private String name;
     @Column(name = "transport_speed", precision = 4, scale = 2)
     private BigDecimal speed;
-    @Column(name = "transport_price")
-    private Integer price;
 }

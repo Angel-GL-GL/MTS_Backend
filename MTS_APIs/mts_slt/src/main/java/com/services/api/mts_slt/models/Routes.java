@@ -17,4 +17,6 @@ public class Routes {
     private String name;
     @Column(name = "route_line")
     private Integer line;
+    @Column(name = "route_price")
+    private Integer price;
 }

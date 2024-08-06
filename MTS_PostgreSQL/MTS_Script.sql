@@ -17,7 +17,6 @@ DROP TABLE transports;
 CREATE TABLE transports(
 	transport_name VARCHAR(50) NOT NULL,
 	transport_speed NUMERIC(4,2) NOT NULL DEFAULT 0.0,
-	transport_price INTEGER NOT NULL,
 	CONSTRAINT pk_transport PRIMARY KEY(transport_name)
 );
 
@@ -54,6 +53,7 @@ CREATE TABLE routes(
 	route_id SERIAL NOT NULL,
 	route_name varchar(500) NOT NULL,
 	route_line INTEGER NOT NULL,
+	route_price INTEGER NOT NULL,
 	CONSTRAINT pk_route PRIMARY KEY(route_id),
 	CONSTRAINT fk_routes_lines FOREIGN KEY(route_line)
 		REFERENCES lines(line_id) ON UPDATE CASCADE
