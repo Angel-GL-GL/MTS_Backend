@@ -4,7 +4,7 @@ package com.services.api.mts_slt.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import java.math.BigDecimal;
+//import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -18,14 +18,16 @@ public class Stations {
     private String name;
     @Column(name = "station_line")
     private Integer line;
-    @Column(name = "station_coord_x",precision = 30, scale = 15)
-    private BigDecimal x;
-    @Column(name = "station_coord_y",precision = 30, scale = 15)
-    private BigDecimal y;
     @Column(name = "station_incident")
     private String incident;
     @Column(name = "station_services")
     private String services;
     @Column(name = "station_information")
     private String information;
+/*
+    @Column(name = "station_coord_x",precision = 30, scale = 15)
+    private BigDecimal x;
+    @Column(name = "station_coord_y",precision = 30, scale = 15)
+    private BigDecimal y;
+ */
 }

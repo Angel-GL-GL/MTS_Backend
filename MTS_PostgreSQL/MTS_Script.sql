@@ -33,21 +33,6 @@ CREATE TABLE lines(
 		REFERENCES transports(transport_name) ON UPDATE CASCADE
 );
 
-/*Estaciones*/
-CREATE TABLE stations(
-	station_id SERIAL NOT NULL,
-	station_name VARCHAR(75) NOT NULL,
-	station_line INTEGER NOT NULL,
-	station_coord_x NUMERIC(30,15) NOT NULL,
-	station_coord_y NUMERIC(30,15) NOT NULL,
-	station_incident VARCHAR(1000) DEFAULT '-',
-	station_services VARCHAR(1000) DEFAULT '-',
-	station_information VARCHAR(2000) DEFAULT '-',
-	CONSTRAINT pk_station PRIMARY KEY(station_id),
-	CONSTRAINT fk_station_lines FOREIGN KEY(station_line)
-		REFERENCES lines(line_id) ON UPDATE CASCADE
-);
-
 /*Rutas*/
 CREATE TABLE routes(
 	route_id SERIAL NOT NULL,
@@ -56,6 +41,21 @@ CREATE TABLE routes(
 	route_price INTEGER NOT NULL,
 	CONSTRAINT pk_route PRIMARY KEY(route_id),
 	CONSTRAINT fk_routes_lines FOREIGN KEY(route_line)
+		REFERENCES lines(line_id) ON UPDATE CASCADE
+);
+
+/*Estaciones*/
+CREATE TABLE stations(
+	station_id SERIAL NOT NULL,
+	station_name VARCHAR(75) NOT NULL,
+	station_line INTEGER NOT NULL,
+	/*station_coord_x NUMERIC(30,15) NOT NULL,
+	station_coord_y NUMERIC(30,15) NOT NULL,*/
+	station_incident VARCHAR(1000) DEFAULT '-',
+	station_services VARCHAR(1000) DEFAULT '-',
+	station_information VARCHAR(2000) DEFAULT '-',
+	CONSTRAINT pk_station PRIMARY KEY(station_id),
+	CONSTRAINT fk_station_lines FOREIGN KEY(station_line)
 		REFERENCES lines(line_id) ON UPDATE CASCADE
 );
 
