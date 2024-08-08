@@ -1,15 +1,17 @@
 DROP TABLE reports_evidences_match;
 DROP TABLE evidences;
 DROP TABLE reports;
+DROP TABLE opinions_stations_match;
+DROP TABLE opinions_lines_match;
 DROP TABLE opinions;
 DROP TABLE supervisors;
 DROP TABLE administrators;
 DROP TABLE users;
-DROP TABLE transfers;
 DROP TABLE routes_stations_match;
+DROP TABLE transfers;
+DROP TABLE stations;
 DROP TABLE schedules;
 DROP TABLE routes;
-DROP TABLE stations;
 DROP TABLE lines;
 DROP TABLE transports;
 
@@ -44,6 +46,18 @@ CREATE TABLE routes(
 		REFERENCES lines(line_id) ON UPDATE CASCADE
 );
 
+/*Horarios de apertura y cierre*/
+CREATE TABLE schedules(
+	schedule_id SERIAL NOT NULL,
+	schedule_open_hour TIME NOT NULL,
+	schedule_close_hour TIME NOT NULL,
+	schedule_day varchar(35) NOT NULL,
+	schedule_route INTEGER NOT NULL,
+	CONSTRAINT pk_schedule PRIMARY KEY(schedule_id),
+	CONSTRAINT fk_schedules_routes FOREIGN KEY(schedule_route)
+		REFERENCES routes(route_id) ON UPDATE CASCADE
+);
+
 /*Estaciones*/
 CREATE TABLE stations(
 	station_id SERIAL NOT NULL,
@@ -59,16 +73,17 @@ CREATE TABLE stations(
 		REFERENCES lines(line_id) ON UPDATE CASCADE
 );
 
-/*Horarios de apertura y cierre*/
-CREATE TABLE schedules(
-	schedule_id SERIAL NOT NULL,
-	schedule_open_hour TIME NOT NULL,
-	schedule_close_hour TIME NOT NULL,
-	schedule_day varchar(35) NOT NULL,
-	schedule_route INTEGER NOT NULL,
-	CONSTRAINT pk_schedule PRIMARY KEY(schedule_id),
-	CONSTRAINT fk_schedules_routes FOREIGN KEY(schedule_route)
-		REFERENCES routes(route_id) ON UPDATE CASCADE
+/*Transbordos*/
+CREATE TABLE transfers(
+	transfer_id SERIAL NOT NULL,
+	transfer_station_a INTEGER NOT NULL,
+	transfer_station_b INTEGER NOT NULL,
+	transfer_price INTEGER NOT NULL DEFAULT 0.0,
+	CONSTRAINT pk_transfer PRIMARY KEY(transfer_id),
+	CONSTRAINT fk_transfers_stations_a FOREIGN KEY(transfer_station_a)
+		REFERENCES stations(station_id) ON UPDATE CASCADE,
+	CONSTRAINT fk_transfers_stations_b FOREIGN KEY(transfer_station_b)
+		REFERENCES stations(station_id) ON UPDATE CASCADE
 );
 
 /*Match de rutas y estaciones*/
@@ -80,19 +95,6 @@ CREATE TABLE routes_stations_match(
 	CONSTRAINT fk_rsm_route FOREIGN KEY(rsm_route)
 		REFERENCES routes(route_id) ON UPDATE CASCADE,
 	CONSTRAINT fk_rsm_station FOREIGN KEY(rsm_station)
-		REFERENCES stations(station_id) ON UPDATE CASCADE
-);
-
-/*Transbordos*/
-CREATE TABLE transfers(
-	transfer_id SERIAL NOT NULL,
-	transfer_station_a INTEGER NOT NULL,
-	transfer_station_b INTEGER NOT NULL,
-	transfer_price INTEGER NOT NULL DEFAULT 0.0,
-	CONSTRAINT pk_transfer PRIMARY KEY(transfer_id),
-	CONSTRAINT fk_transfers_stations_a FOREIGN KEY(transfer_station_a)
-		REFERENCES stations(station_id) ON UPDATE CASCADE,
-	CONSTRAINT fk_transfers_stations_b FOREIGN KEY(transfer_station_b)
 		REFERENCES stations(station_id) ON UPDATE CASCADE
 );
 
@@ -153,6 +155,30 @@ CREATE TABLE opinions(
 	CONSTRAINT fk_opinions_users FOREIGN KEY(opinion_user)
 		REFERENCES users(user_id) ON UPDATE CASCADE,
 	CONSTRAINT fk_opinions_stations FOREIGN KEY(opinion_station)
+		REFERENCES stations(station_id) ON UPDATE CASCADE
+);
+
+/*Match de Comentarios con Líneas*/
+CREATE TABLE opinions_lines_match(
+	olm_id SERIAL NOT NULL,
+	olm_opinion INTEGER NOT NULL,
+	olm_line INTEGER NOT NULL,
+	CONSTRAINT pk_olm PRIMARY KEY(olm_id),
+	CONSTRAINT fk_olm_opinions FOREIGN KEY(olm_opinion)
+		REFERENCES opinions(opinion_id) ON UPDATE CASCADE,
+	CONSTRAINT fk_olm_stations FOREIGN KEY(olm_line)
+		REFERENCES lines(line_id) ON UPDATE CASCADE
+);
+
+/*Match de Comentarios con Estaciones*/
+CREATE TABLE opinions_stations_match(
+	osm_id SERIAL NOT NULL,
+	osm_opinion INTEGER NOT NULL,
+	osm_station INTEGER NOT NULL,
+	CONSTRAINT pk_osm PRIMARY KEY(osm_id),
+	CONSTRAINT fk_osm_opinions FOREIGN KEY(osm_opinion)
+		REFERENCES opinions(opinion_id) ON UPDATE CASCADE,
+	CONSTRAINT fk_osm_stations FOREIGN KEY(osm_station)
 		REFERENCES stations(station_id) ON UPDATE CASCADE
 );
 
@@ -262,6 +288,18 @@ WHERE station_name IN (
     FROM stations
     GROUP BY station_name
     HAVING COUNT(DISTINCT station_line) > 1
-) AND station_name = 'name';
+) AND station_name = 'Auditorio';
 
 SELECT * FROM transfers;
+
+SELECT 
+    sa.station_name AS Estación_A,
+    sa.station_line AS Línea_A,
+    sb.station_name AS Estación_B,
+    sb.station_line AS Línea_B
+FROM 
+    transfers t
+JOIN 
+    stations sa ON t.transfer_station_a = sa.station_id
+JOIN 
+    stations sb ON t.transfer_station_b = sb.station_id;
