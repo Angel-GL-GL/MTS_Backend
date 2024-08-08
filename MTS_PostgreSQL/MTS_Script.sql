@@ -64,7 +64,7 @@ CREATE TABLE schedules(
 	schedule_id SERIAL NOT NULL,
 	schedule_open_hour TIME NOT NULL,
 	schedule_close_hour TIME NOT NULL,
-	schedule_day varchar(25) NOT NULL,
+	schedule_day varchar(35) NOT NULL,
 	schedule_route INTEGER NOT NULL,
 	CONSTRAINT pk_schedule PRIMARY KEY(schedule_id),
 	CONSTRAINT fk_schedules_routes FOREIGN KEY(schedule_route)
