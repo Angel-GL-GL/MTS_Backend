@@ -265,6 +265,8 @@ INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,superviso
 
 SELECT * FROM supervisors;
 
+SELECT * FROM stations WHERE station_line=1;
+
 SELECT * FROM routes_stations_match;
 
 SELECT station_name
@@ -303,3 +305,14 @@ JOIN
     stations sa ON t.transfer_station_a = sa.station_id
 JOIN 
     stations sb ON t.transfer_station_b = sb.station_id;
+
+
+SELECT
+	ro.route_name AS route,
+	st.station_name AS station
+FROM
+	routes_stations_match rsm
+JOIN
+	stations st ON rsm.rsm_station = st.station_id
+JOIN
+	routes ro ON rsm.rsm_route = ro.route_id;
