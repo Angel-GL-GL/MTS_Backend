@@ -24,14 +24,14 @@ public interface Reports_Repository extends JpaRepository<Reports,Integer>{
     //SELECT * FROM reports WHERE report_status = ?;
     List<Reports> findByStatus(String status);
     //SELECT * FROM reports WHERE report_time = ? AND report_date = ?;
-    List<Reports> findByTimeAndDate(LocalTime time,LocalDate date);
-    //SELECT * FROM reports WHERE report_time = ? AND report_date = ? AND report_station = ?;
-    List<Reports> findByTimeAndDateAndStation(LocalTime time,LocalDate date, Integer Station);
-    //SELECT * FROM reports WHERE report_time = ? AND report_date = ? AND report_line = ?;
-    List<Reports> findByTimeAndDateAndLine(LocalTime time,LocalDate date, Integer Line);
-    //SELECT * FROM reports WHERE report_time = ? AND report_date = ? AND report_route = ?;
-    List<Reports> findByTimeAndDateAndRoute(LocalTime time,LocalDate date, Integer route);
-    //SELECT * FROM reports WHERE report_time = ? AND report_date = ? AND report_transport = ?;
-    List<Reports> findByTimeAndDateAndTransport(LocalTime time,LocalDate date, String Transport);
+    //List<Reports> findByTimeAndDate(LocalTime time,LocalDate date);
+    //SELECT * FROM reports WHERE report_date = ? AND report_station = ?;
+    List<Reports> findByDateAndStation(LocalDate date, Integer Station);
+    //SELECT * FROM reports WHERE report_date = ? AND report_line = ?;
+    List<Reports> findByDateAndLine(LocalDate date, Integer Line);
+    //SELECT * FROM reports WHERE report_date = ? AND report_route = ?;
+    List<Reports> findByDateAndRoute(LocalDate date, Integer route);
+    //SELECT * FROM reports WHERE report_date = ? AND report_transport = ?;
+    List<Reports> findByDateAndTransport(LocalDate date, String Transport);
 
 }

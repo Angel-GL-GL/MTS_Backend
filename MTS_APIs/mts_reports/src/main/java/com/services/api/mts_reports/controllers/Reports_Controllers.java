@@ -62,13 +62,13 @@ public class Reports_Controllers {
         return ResponseEntity.ok(service.getReportByDate(helper.getDate()));
     }
 
-    //Obtener reportes de una fecha
-    @RequestMapping(value = "api/reports/date/time", method = RequestMethod.POST)
-    private ResponseEntity<List<Reports>> getReportsByDateAndTime(@RequestBody Helper helper){
-        return ResponseEntity.ok(service.getReportByTimeAndDate(
-                helper.getTime(),helper.getDate()
-        ));
-    }
+//    //Obtener reportes de una fecha
+//    @RequestMapping(value = "api/reports/date/time", method = RequestMethod.POST)
+//    private ResponseEntity<List<Reports>> getReportsByDateAndTime(@RequestBody Helper helper){
+//        return ResponseEntity.ok(service.getReportByTimeAndDate(
+//                helper.getTime(),helper.getDate()
+//        ));
+//    }
 
     //Obtener reportes con un estatus
     @RequestMapping(value = "api/reports/status/{status}", method = RequestMethod.GET)
@@ -76,35 +76,35 @@ public class Reports_Controllers {
         return ResponseEntity.ok(service.getReportByStatus(status));
     }
 
-    //Obtener reportes de un transporte en una fecha y hora
+    //Obtener reportes de un transporte en una fecha
     @RequestMapping(value = "api/transports/reports/search", method = RequestMethod.POST)
     private ResponseEntity<List<Reports>> getReportByTimeAndDateAndTransport(@RequestBody Helper helper){
-        return ResponseEntity.ok(service.getReportByTimeAndDateAndTransport(
-                helper.getTime(),helper.getDate(),helper.getTransport()
+        return ResponseEntity.ok(service.getReportByDateAndTransport(
+                helper.getDate(),helper.getTransport()
         ));
     }
 
-    //Obtener reportes de una línea en una fecha y hora
+    //Obtener reportes de una línea en una fecha
     @RequestMapping(value = "api/lines/{line}/reports/search", method = RequestMethod.POST)
     private ResponseEntity<List<Reports>> getReportByTimeAndDateAndLine(@PathVariable Integer line,@RequestBody Helper helper){
-        return ResponseEntity.ok(service.getReportByTimeAndDateAndLine(
-                helper.getTime(),helper.getDate(),line
+        return ResponseEntity.ok(service.getReportByDateAndLine(
+                helper.getDate(),line
         ));
     }
 
-    //Obtener reportes de una ruta en una fecha y hora
+    //Obtener reportes de una ruta en una fecha
     @RequestMapping(value = "api/routes/{route}/reports/search", method = RequestMethod.POST)
     private ResponseEntity<List<Reports>> getReportByTimeAndDateAndRoute(@PathVariable Integer route,@RequestBody Helper helper){
-        return ResponseEntity.ok(service.getReportByTimeAndDateAndRoute(
-                helper.getTime(),helper.getDate(),route
+        return ResponseEntity.ok(service.getReportByDateAndRoute(
+                helper.getDate(),route
         ));
     }
 
-    //Obtener reportes de una estación en una fecha y hora
+    //Obtener reportes de una estación en una fecha
     @RequestMapping(value = "api/stations/{station}/reports/search", method = RequestMethod.POST)
     private ResponseEntity<List<Reports>> getReportByTimeAndDateAndStation(@PathVariable Integer station,@RequestBody Helper helper){
-        return ResponseEntity.ok(service.getReportByTimeAndDateAndStation(
-                helper.getTime(),helper.getDate(),station
+        return ResponseEntity.ok(service.getReportByDateAndStation(
+                helper.getDate(),station
         ));
     }
 

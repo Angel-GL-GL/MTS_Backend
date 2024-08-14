@@ -96,41 +96,41 @@ public class Reports_Service {
         return res;
     }
 
-    //Reportes por hora y fecha
-    public List<Reports> getReportByTimeAndDate(LocalTime time, LocalDate date){
-        List<Reports> res = repository.findByTimeAndDate(time,date);
+//    //Reportes por hora y fecha
+//    public List<Reports> getReportByTimeAndDate(LocalTime time, LocalDate date){
+//        List<Reports> res = repository.findByTimeAndDate(time,date);
+//        if(res.isEmpty()) return new ArrayList<>();
+//        res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
+//        return res;
+//    }
+
+    //Reportes por fecha y transporte
+    public List<Reports> getReportByDateAndTransport(LocalDate date, String transport){
+        List<Reports> res = repository.findByDateAndTransport(date,transport);
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
         return res;
     }
 
-    //Reportes por hora, fecha y transporte
-    public List<Reports> getReportByTimeAndDateAndTransport(LocalTime time, LocalDate date, String transport){
-        List<Reports> res = repository.findByTimeAndDateAndTransport(time,date,transport);
+    //Reportes por fecha y línea
+    public List<Reports> getReportByDateAndLine(LocalDate date, Integer line){
+        List<Reports> res = repository.findByDateAndLine(date,line);
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
         return res;
     }
 
-    //Reportes por hora, fecha y línea
-    public List<Reports> getReportByTimeAndDateAndLine(LocalTime time, LocalDate date, Integer line){
-        List<Reports> res = repository.findByTimeAndDateAndLine(time,date,line);
+    //Reportes por fecha y ruta
+    public List<Reports> getReportByDateAndRoute(LocalDate date, Integer route){
+        List<Reports> res = repository.findByDateAndRoute(date,route);
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
         return res;
     }
 
-    //Reportes por hora, fecha y ruta
-    public List<Reports> getReportByTimeAndDateAndRoute(LocalTime time, LocalDate date, Integer route){
-        List<Reports> res = repository.findByTimeAndDateAndRoute(time,date,route);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
-        return res;
-    }
-
-    //Reportes por hora, fecha y estación
-    public List<Reports> getReportByTimeAndDateAndStation(LocalTime time, LocalDate date, Integer station){
-        List<Reports> res = repository.findByTimeAndDateAndStation(time,date,station);
+    //Reportes por fecha y estación
+    public List<Reports> getReportByDateAndStation(LocalDate date, Integer station){
+        List<Reports> res = repository.findByDateAndStation(date,station);
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
         return res;
