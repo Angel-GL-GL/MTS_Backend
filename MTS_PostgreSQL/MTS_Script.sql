@@ -268,7 +268,7 @@ INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,superviso
 
 SELECT * FROM supervisors;
 
-SELECT * FROM stations WHERE station_line=1;
+SELECT * FROM stations WHERE station_line=13;
 
 SELECT * FROM routes_stations_match;
 

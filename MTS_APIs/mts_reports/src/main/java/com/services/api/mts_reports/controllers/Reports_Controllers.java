@@ -107,4 +107,13 @@ public class Reports_Controllers {
                 helper.getTime(),helper.getDate(),station
         ));
     }
+
+    //Actualizar status
+    @RequestMapping(value = "api/reports/update/incident", method = RequestMethod.PUT)
+    private boolean updateStatus(@RequestBody Reports reports){
+        Reports res = service.getReport(reports.getId());
+        if(!reports.getId().equals(res.getId())) return false;
+        service.changeStatus(res.getId(),reports.getStatus());
+        return true;
+    }
 }
