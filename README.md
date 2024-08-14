@@ -127,6 +127,7 @@ api/administrator/sign-in | POST | Login into your administrator account.
 ```shell
 {
     "id": "***",
+    "
 }
 ```
 
@@ -167,7 +168,8 @@ api/administrator/sign-in | POST | Login into your administrator account.
 ### Structure of api/supervisor/delete
 ```shell
 {
-    "sup": "**********",
+    "id": "**********",
+    "password": "***"
 }
 ```
 
