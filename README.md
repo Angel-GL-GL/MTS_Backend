@@ -126,8 +126,8 @@ api/administrator/sign-in | POST | Login into your administrator account.
 ### Structure of api/delete
 ```shell
 {
-    "id": "***",
-    "
+    "email": "***",
+    "password": "***"
 }
 ```
 
