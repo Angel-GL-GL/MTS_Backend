@@ -11,5 +11,4 @@ import java.time.LocalTime;
 public class Helper {
     private String transport;
     private LocalDate date;
-    private LocalTime time;
 }

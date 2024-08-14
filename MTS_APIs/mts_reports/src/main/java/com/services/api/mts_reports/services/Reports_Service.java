@@ -136,6 +136,14 @@ public class Reports_Service {
         return res;
     }
 
+    //Reportes por fecha y usuario
+    public List<Reports> getReportByDateAndUser(LocalDate date, Integer user){
+        List<Reports> res = repository.findByDateAndUser(date,user);
+        if(res.isEmpty()) return new ArrayList<>();
+        res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
+        return res;
+    }
+
     //Editar status
     public boolean changeStatus(Integer id, String status){
         Reports reports = getReport(id);

@@ -33,5 +33,7 @@ public interface Reports_Repository extends JpaRepository<Reports,Integer>{
     List<Reports> findByDateAndRoute(LocalDate date, Integer route);
     //SELECT * FROM reports WHERE report_date = ? AND report_transport = ?;
     List<Reports> findByDateAndTransport(LocalDate date, String Transport);
+    //SELECT * FROM reports WHERE report_date = ? AND report_user = ?;
+    List<Reports> findByDateAndUser(LocalDate date, Integer user);
 
 }

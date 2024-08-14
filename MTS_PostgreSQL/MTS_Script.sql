@@ -319,3 +319,5 @@ JOIN
 	stations st ON rsm.rsm_station = st.station_id
 JOIN
 	routes ro ON rsm.rsm_route = ro.route_id;
+
+SELECT * FROM reports;

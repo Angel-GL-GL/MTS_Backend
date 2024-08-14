@@ -56,6 +56,12 @@ public class Reports_Controllers {
         return ResponseEntity.ok(service.getReportByStation(station));
     }
 
+    //Obtener reportes de un usuario
+    @RequestMapping(value = "api/user/{user}/reports", method = RequestMethod.GET)
+    private ResponseEntity<List<Reports>> getReportByUser(@PathVariable Integer user){
+        return ResponseEntity.ok(service.getReportsByUser(user));
+    }
+
     //Obtener reportes de una fecha
     @RequestMapping(value = "api/reports/date", method = RequestMethod.POST)
     private ResponseEntity<List<Reports>> getReportsByDate(@RequestBody Helper helper){
@@ -108,8 +114,16 @@ public class Reports_Controllers {
         ));
     }
 
+    //Obtener reportes de un usuario en una fecha
+    @RequestMapping(value = "api/user/{user}/reports/search", method = RequestMethod.POST)
+    private ResponseEntity<List<Reports>> getReportByTimeAndDateAndUser(@PathVariable Integer user,@RequestBody Helper helper){
+        return ResponseEntity.ok(service.getReportByDateAndUser(
+                helper.getDate(),user
+        ));
+    }
+
     //Actualizar status
-    @RequestMapping(value = "api/reports/update/incident", method = RequestMethod.PUT)
+    @RequestMapping(value = "api/reports/update/status", method = RequestMethod.PUT)
     private boolean updateStatus(@RequestBody Reports reports){
         Reports res = service.getReport(reports.getId());
         if(!reports.getId().equals(res.getId())) return false;
