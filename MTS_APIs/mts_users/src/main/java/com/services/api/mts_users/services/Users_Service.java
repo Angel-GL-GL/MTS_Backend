@@ -28,8 +28,7 @@ public class Users_Service {
     //Usuario por id y pass retornando boolean
     public boolean correctUser(Integer id, String pass){
         List<Users> res = repository.findByIdAndPassword(id,pass);
-        if(!res.isEmpty()) return false;
-        else return true;
+        return !res.isEmpty();
     }
     //Guardar
     public boolean setUser(Users user){
