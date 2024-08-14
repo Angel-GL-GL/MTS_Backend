@@ -25,6 +25,12 @@ public class Users_Service {
         if(!res.isEmpty()) return res.get(0);
         else return new Users();
     }
+    //Usuario por id y pass retornando boolean
+    public boolean correctUser(Integer id, String pass){
+        List<Users> res = repository.findByIdAndPassword(id,pass);
+        if(!res.isEmpty()) return false;
+        else return true;
+    }
     //Guardar
     public boolean setUser(Users user){
         if(repository.existsByEmail(user.getEmail())) return false;

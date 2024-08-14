@@ -39,8 +39,11 @@ public class Supervisors_Controllers {
     }
     //Delete
     @RequestMapping(value = "api/supervisor/delete/profile",method = RequestMethod.DELETE)
-    private boolean delete(@RequestBody Supervisors supervisors){
-        return service.deleteSupervisor(supervisors);
+    private boolean delete(@RequestBody Helper supervisor){
+        Supervisors supervisors = service.getSup(supervisor.getId());
+        boolean band = user_service.correctUser(supervisors.getUser(),supervisor.getPassword());
+        if(band) return service.deleteSupervisor(supervisors);
+        return false;
     }
 //    @RequestMapping(value = "api/supervisors", method = RequestMethod.GET)
 //    private ResponseEntity<List<Supervisors>> get(){
