@@ -21,6 +21,8 @@ public class Reports {
     private String transport;
     @Column(name = "report_line")
     private Integer line;
+    @Column(name = "report_route")
+    private Integer route;
     @Column(name = "report_station")
     private Integer station;
     @Column(name = "report_date")

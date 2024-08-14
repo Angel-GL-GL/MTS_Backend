@@ -17,8 +17,15 @@ import java.util.Optional;
 public class Reports_Service {
     @Autowired
     private Reports_Repository repository;
+    //Guardar
+    public boolean createReport(Reports reports){
+        repository.save(reports);
+        return true;
+    }
+
     //Reportes
     public List<Reports> getAllReports(){return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));}
+
     //Obtiene reporte
     public Reports getReport(Integer id){
         Optional<Reports> os = repository.findById(id);
@@ -49,6 +56,14 @@ public class Reports_Service {
         return res;
     }
 
+    //Reportes por ruta
+    public List<Reports> getReportByRoute(Integer route){
+        List<Reports> res = repository.findByRoute(route);
+        if(res.isEmpty()) return new ArrayList<>();
+        res.sort(Comparator.comparing(Reports::getId));
+        return res;
+    }
+
     //Reportes por estación
     public List<Reports> getReportByStation(Integer station){
         List<Reports> res = repository.findByStation(station);
@@ -64,14 +79,14 @@ public class Reports_Service {
         res.sort(Comparator.comparing(Reports::getId));
         return res;
     }
-
-    //Reportes por hora
-    public List<Reports> getReportByTime(LocalTime time){
-        List<Reports> res = repository.findByTime(time);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Reports::getId));
-        return res;
-    }
+//
+//    //Reportes por hora
+//    public List<Reports> getReportByTime(LocalTime time){
+//        List<Reports> res = repository.findByTime(time);
+//        if(res.isEmpty()) return new ArrayList<>();
+//        res.sort(Comparator.comparing(Reports::getId));
+//        return res;
+//    }
 
     //Reportes por estatus
     public List<Reports> getReportByStatus(String status){
@@ -85,7 +100,7 @@ public class Reports_Service {
     public List<Reports> getReportByTimeAndDate(LocalTime time, LocalDate date){
         List<Reports> res = repository.findByTimeAndDate(time,date);
         if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Reports::getId));
+        res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
         return res;
     }
 
@@ -93,7 +108,7 @@ public class Reports_Service {
     public List<Reports> getReportByTimeAndDateAndTransport(LocalTime time, LocalDate date, String transport){
         List<Reports> res = repository.findByTimeAndDateAndTransport(time,date,transport);
         if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Reports::getId));
+        res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
         return res;
     }
 
@@ -101,7 +116,15 @@ public class Reports_Service {
     public List<Reports> getReportByTimeAndDateAndLine(LocalTime time, LocalDate date, Integer line){
         List<Reports> res = repository.findByTimeAndDateAndLine(time,date,line);
         if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Reports::getId));
+        res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
+        return res;
+    }
+
+    //Reportes por hora, fecha y ruta
+    public List<Reports> getReportByTimeAndDateAndRoute(LocalTime time, LocalDate date, Integer route){
+        List<Reports> res = repository.findByTimeAndDateAndRoute(time,date,route);
+        if(res.isEmpty()) return new ArrayList<>();
+        res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
         return res;
     }
 
@@ -109,7 +132,16 @@ public class Reports_Service {
     public List<Reports> getReportByTimeAndDateAndStation(LocalTime time, LocalDate date, Integer station){
         List<Reports> res = repository.findByTimeAndDateAndStation(time,date,station);
         if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Reports::getId));
+        res.sort(Comparator.comparing(Reports::getStatus).thenComparing(Reports::getId));
         return res;
+    }
+
+    //Editar status
+    public boolean changeStatus(Integer id, String status){
+        Reports reports = getReport(id);
+        if(!reports.getId().equals(id)) return false;
+        reports.setStatus(status);
+        repository.save(reports);
+        return true;
     }
 }

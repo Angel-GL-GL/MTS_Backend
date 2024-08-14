@@ -13,12 +13,14 @@ public interface Reports_Repository extends JpaRepository<Reports,Integer>{
     List<Reports> findByTransport(String transport);
     //SELECT * FROM reports WHERE report_line = ?;
     List<Reports> findByLine(Integer line);
+    //SELECT * FROM reports WHERE report_route = ?;
+    List<Reports> findByRoute(Integer route);
     //SELECT * FROM reports WHERE report_station = ?;
     List<Reports> findByStation(Integer station);
     //SELECT * FROM reports WHERE report_date = ?;
     List<Reports> findByDate(LocalDate date);
     //SELECT * FROM reports WHERE report_time = ?;
-    List<Reports> findByTime(LocalTime time);
+    //List<Reports> findByTime(LocalTime time);
     //SELECT * FROM reports WHERE report_status = ?;
     List<Reports> findByStatus(String status);
     //SELECT * FROM reports WHERE report_time = ? AND report_date = ?;
@@ -27,6 +29,8 @@ public interface Reports_Repository extends JpaRepository<Reports,Integer>{
     List<Reports> findByTimeAndDateAndStation(LocalTime time,LocalDate date, Integer Station);
     //SELECT * FROM reports WHERE report_time = ? AND report_date = ? AND report_line = ?;
     List<Reports> findByTimeAndDateAndLine(LocalTime time,LocalDate date, Integer Line);
+    //SELECT * FROM reports WHERE report_time = ? AND report_date = ? AND report_route = ?;
+    List<Reports> findByTimeAndDateAndRoute(LocalTime time,LocalDate date, Integer route);
     //SELECT * FROM reports WHERE report_time = ? AND report_date = ? AND report_transport = ?;
     List<Reports> findByTimeAndDateAndTransport(LocalTime time,LocalDate date, String Transport);
 

@@ -188,6 +188,7 @@ CREATE TABLE reports(
 	report_user INTEGER NOT NULL,
 	report_transport VARCHAR(50) NOT NULL,
 	report_line INTEGER NOT NULL,
+	report_route INTEGER NOT NULL,
 	report_station INTEGER NOT NULL,
 	report_date DATE NOT NULL DEFAULT CURRENT_DATE,
 	report_time TIME NOT NULL DEFAULT CURRENT_TIME,
@@ -200,6 +201,8 @@ CREATE TABLE reports(
 		REFERENCES transports(transport_name) ON UPDATE CASCADE,
 	CONSTRAINT fk_reports_lines FOREIGN KEY(report_line)
 		REFERENCES lines(line_id) ON UPDATE CASCADE,
+	CONSTRAINT fk_reports_routes FOREIGN KEY(report_route)
+		REFERENCES routes(route_id) ON UPDATE CASCADE,
 	CONSTRAINT fk_reports_stations FOREIGN KEY(report_station)
 		REFERENCES stations(station_id) ON UPDATE CASCADE
 );
