@@ -89,22 +89,22 @@ api/administrator/sign-in | POST | Logs into an administrator account.
 ### Structure of api/sign-up 
 ```shell
 {
-    "name": "***",
-    "lastname_pat": "***",
-    "lastname_mat": "***",
-    "email": "***",
-    "curp": "******************",
-    "ocuparion": "***",
-    "password": "***",
-    "phone": "**********"
+    "name": "",
+    "lastname_pat": "",
+    "lastname_mat": "",
+    "email": "",
+    "curp": "",
+    "ocuparion": "",
+    "password": "",
+    "phone": ""
 }
 ```
 
 ### Structure of api/sign-in
 ```shell
 {
-    "email": "***",
-    "password": "***"
+    "email": "",
+    "password": ""
 }
 ```
 
@@ -112,14 +112,14 @@ api/administrator/sign-in | POST | Logs into an administrator account.
 ```shell
 {
     "id":0
-    "name": "***",
-    "lastname_pat": "***",
-    "lastname_mat": "***",
-    "email": "***",
-    "curp": "******************",
-    "ocuparion": "***",
-    "password": "***",
-    "phone": "**********"
+    "name": "",
+    "lastname_pat": "",
+    "lastname_mat": "",
+    "email": "",
+    "curp": "",
+    "ocuparion": "",
+    "password": "",
+    "phone": ""
 }
 ```
 
@@ -137,9 +137,9 @@ api/administrator/sign-in | POST | Logs into an administrator account.
 - POST request to api/supervisor/sign-up, user field has to store the value from id field from the received json.
 ```shell
 {
-    "sup": "**********",
+    "sup": "",
     "user": 0,
-    "admin": "**********",
+    "admin": "",
     "line": 0,
     "station": 0
 }
@@ -149,17 +149,17 @@ api/administrator/sign-in | POST | Logs into an administrator account.
 - POST request to api/supervisor/sign-in. The structure of the json is:
 ```shell
 {
-    "id": "**********",
-    "password": "***"
+    "id": "",
+    "password": ""
 }
 ```
 
 ### Structure of api/supervisor/update/profile
 ```shell
 {
-    "sup": "**********",
+    "sup": "",
     "user": 0,
-    "admin": "**********",
+    "admin": "",
     "line": 0,
     "station": 0
 }
@@ -168,8 +168,8 @@ api/administrator/sign-in | POST | Logs into an administrator account.
 ### Structure of api/supervisor/delete
 ```shell
 {
-    "id": "**********",
-    "password": "***"
+    "id": "",
+    "password": ""
 }
 ```
 
@@ -177,8 +177,8 @@ api/administrator/sign-in | POST | Logs into an administrator account.
 - POST request to api/administrator/sign-in. The structure of the json is:
 ```shell
 {
-    "id": "**********",
-    "password": "***"
+    "id": "",
+    "password": ""
 }
 ```
 
@@ -217,7 +217,7 @@ api/routes/{route}/schedules | GET | Retrieves all the schedules of the route.
 ```shell
 {
     "id": 0,
-    "incident":"****************",
+    "incident": "",
     "speed": 0.0
 }
 ```
@@ -226,7 +226,7 @@ api/routes/{route}/schedules | GET | Retrieves all the schedules of the route.
 ```shell
 {
     "id": 0,
-    "incident":"****************"
+    "incident": ""
 }
 ```
 
