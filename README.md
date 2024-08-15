@@ -234,7 +234,7 @@ api/transports/reports | POST | Retrieves all reports of a transport.
 api/lines/{line}/reports | GET | Retrieves all reports of a line.
 api/routes/{route}/reports | GET | Retrieves all reports of a route.
 api/stations/{station}/reports | GET | Retrieves all reports of a station.
-api/user/{user}/reports | GET | Retrieves all reports from a user.
+api/user/{user}/reports | GET | Retrieves all reports submitted by a user.
 api/reports/date | POST | Retrieves all reports on a given date.
 api/reports/status/{status} | GET | Retrieves all reports with a given status.
 api/transports/reports/search | POST | Retrieves all the reports of a transport on a given date.
