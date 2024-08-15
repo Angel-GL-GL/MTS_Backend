@@ -111,7 +111,7 @@ api/administrator/sign-in | POST | Logs into an administrator account.
 ### Structure of api/update/profile
 ```shell
 {
-    "id":0
+    "id": 0,
     "name": "",
     "lastname_pat": "",
     "lastname_mat": "",
@@ -126,8 +126,8 @@ api/administrator/sign-in | POST | Logs into an administrator account.
 ### Structure of api/delete
 ```shell
 {
-    "email": "***",
-    "password": "***"
+    "email": "",
+    "password": ""
 }
 ```
 
