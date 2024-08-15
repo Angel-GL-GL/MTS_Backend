@@ -273,6 +273,13 @@ api/user/{user}/reports/search | POST | Retrieves all the reports of a user on a
 }
 ```
 
+### Structure of api/reports/date
+```shell
+{
+        "date": "YYYY-MM-DD"
+}
+```
+
 ### Structure of api/transports/reports/search
 ```shell
 {
@@ -281,7 +288,28 @@ api/user/{user}/reports/search | POST | Retrieves all the reports of a user on a
 }
 ```
 
-### Structure of api/reports/date, api/lines/{line}/reports/search, api/routes/{route}/reports/search, api/stations/{station}/reports/search and api/user/{user}/reports/search
+### Structure of api/lines/{line}/reports/search
+```shell
+{
+        "date": "YYYY-MM-DD"
+}
+```
+
+### Structure of api/routes/{route}/reports/search
+```shell
+{
+        "date": "YYYY-MM-DD"
+}
+```
+
+### Structure of api/stations/{station}/reports/search
+```shell
+{
+        "date": "YYYY-MM-DD"
+}
+```
+
+### Structure of api/user/{user}/reports/search
 ```shell
 {
         "date": "YYYY-MM-DD"
