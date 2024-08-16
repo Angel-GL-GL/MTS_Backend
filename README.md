@@ -190,6 +190,7 @@ api/lines | GET | Retrieves all the lines.
 api/lines/{line} | GET | Retrieves a line by ID.
 api/lines/speeds | GET | Retrieves all lines with speed > 0.
 api/transports/lines | POST | Retrieves all lines of a transport.
+api/lines/incidents | GET | Retrieves all stations with an incident.
 api/lines/incidents/{in} | GET | Retrieves all lines with the incident.
 api/lines/update/incident | PUT | Updates the incident of the line.
 api/routes | GET | Retrieves all routes.
@@ -199,6 +200,7 @@ api/stations | GET | Retrieves all the stations.
 api/stations/{station} | GET | Retrieves a station by ID.
 api/lines/{line}/stations | GET | Retrieves all stations of a line.
 api/routes/{route}/stations | GET | Retrieves all stations of a route.
+api/stations/incidents | GET | Retrieves all stations with an incident.
 api/stations/incidents/{in} | GET | Retrieves all stations with the incident.
 api/stations/update/incident | PUT | Updates the incident of the station.
 api/stations/{station}/transfers | GET | Retrieves all transfers of a station.
