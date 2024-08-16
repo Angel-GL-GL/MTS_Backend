@@ -48,6 +48,11 @@ public class Stations_Controllers {
 
         return ResponseEntity.ok(res);
     }
+    //Estaciones con incidente
+    @RequestMapping(value = "api/stations/incidents", method = RequestMethod.GET)
+    private ResponseEntity<List<Stations>> getLinesWithIncident(){
+        return ResponseEntity.ok(service.getAllStationsWithIncident());
+    }
     //Estaciones de acuerdo al incidente
     @RequestMapping(value = "api/stations/incidents/{in}", method = RequestMethod.GET)
     private ResponseEntity<List<Stations>> getLinesByIncident(@PathVariable String in){

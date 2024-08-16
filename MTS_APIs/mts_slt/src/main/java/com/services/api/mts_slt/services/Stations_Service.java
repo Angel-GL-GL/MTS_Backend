@@ -39,7 +39,16 @@ public class Stations_Service {
         res.sort(Comparator.comparing(Stations::getId));
         return res;
     }
+
     //Estaciones con un incidente
+    public List<Stations> getAllStationsWithIncident(){
+        List<Stations> stations = repository.findByIncidentNot("-");
+        if(stations.isEmpty()) return new ArrayList<>();
+        stations.sort(Comparator.comparing(Stations::getId));
+        return stations;
+    }
+
+    //Estaciones con un incidente indicado
     public List<Stations> getAllStationsByIncident(String incident){
         List<Stations> res = repository.findByIncident(incident);
         if(res.isEmpty()) return new ArrayList<>();
