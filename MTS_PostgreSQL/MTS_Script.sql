@@ -25,7 +25,7 @@ CREATE TABLE transports(
 /*Lineas*/
 CREATE TABLE lines(
 	line_id SERIAL NOT NULL,
-	line_name VARCHAR(10) NOT NULL,
+	line_name VARCHAR(50) NOT NULL,
 	line_transport VARCHAR(50) NOT NULL,
 	line_incident VARCHAR(1000) DEFAULT '-',
 	line_speed NUMERIC(4,2) NOT NULL DEFAULT 0.0,
@@ -263,12 +263,14 @@ SELECT * FROM schedules;
 
 SELECT * FROM stations;
 
+SELECT * FROM stations WHERE station_line=6;
+
+SELECT station_id, station_name, station_line FROM stations WHERE station_name='Chapultepec';
+
 INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
 	VALUES('1111111111',2,'0000000000',1,1),('2222222222',3,'0000000000',1,2);
 
 SELECT * FROM supervisors;
-
-SELECT * FROM stations WHERE station_line=13;
 
 SELECT * FROM routes_stations_match;
 
