@@ -34,7 +34,14 @@ public class Lines_Service {
         res.sort(Comparator.comparing(Lines::getId));
         return res;
     }
-    //Líneas por incidente
+    //Líneas con incidente
+    public List<Lines> getAllStationsWithIncident(){
+        List<Lines> lines = repository.findByIncidentNot("-");
+        if(lines.isEmpty()) return new ArrayList<>();
+        lines.sort(Comparator.comparing(Lines::getId));
+        return lines;
+    }
+    //Líneas con incidente dado
     public List<Lines> getAllLinesByIncident(String incident){
         List<Lines> res = repository.findByIncident(incident);
         if(res.isEmpty()) return new ArrayList<>();

@@ -12,4 +12,6 @@ public interface Lines_Repository extends JpaRepository<Lines,Integer>{
     Lines findByNameAndTransport(String name, String transport);
     //SELECT * FROM lines WHERE line_incident = ?;
     List<Lines> findByIncident(String incident);
+    //SELECT * FROM stations WHERE line_incident <> ?;
+    List<Lines> findByIncidentNot(String incident);
 }

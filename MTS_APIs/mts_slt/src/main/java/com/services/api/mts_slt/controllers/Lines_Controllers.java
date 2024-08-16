@@ -27,7 +27,12 @@ public class Lines_Controllers {
     private ResponseEntity<List<Lines>> getLinesByTransport(@RequestBody TransportHelper transport){
         return ResponseEntity.ok(service.getAllLinesByTransport(transport.getName()));
     }
-    //Líneas con el incidente
+    //Líneas con incidente
+    @RequestMapping(value = "api/lines/incidents", method = RequestMethod.GET)
+    private ResponseEntity<List<Lines>> getLinesWithIncident(){
+        return ResponseEntity.ok(service.getAllStationsWithIncident());
+    }
+    //Líneas con incidente dado
     @RequestMapping(value = "api/lines/incidents/{in}", method = RequestMethod.GET)
     private ResponseEntity<List<Lines>> getLinesByIncident(@PathVariable String in){
         return ResponseEntity.ok(service.getAllLinesByIncident(in));
