@@ -323,3 +323,13 @@ JOIN
 	routes ro ON rsm.rsm_route = ro.route_id;
 
 SELECT * FROM reports;
+
+SELECT * FROM evidences;
+
+SELECT * FROM reports_evidences_match;
+
+SELECT * FROM opinions;
+
+SELECT * FROM opinions_lines_match;
+
+SELECT * FROM opinions_stations_match;
