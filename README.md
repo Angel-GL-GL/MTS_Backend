@@ -263,7 +263,9 @@ api/user/{user}/reports/search | POST | Retrieves all the reports of a user on a
         "date": "YYYY-MM-DD",
         "time": "HH:MM:SS",
         "body": "",
-        "status": "Sin_Validar"
+        "status": "Sin_Validar",
+  		    "x": "",
+  		    "y": ""
 }
 ```
 
