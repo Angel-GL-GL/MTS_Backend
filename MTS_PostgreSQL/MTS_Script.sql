@@ -189,11 +189,13 @@ CREATE TABLE reports(
 	report_transport VARCHAR(50) NOT NULL,
 	report_line INTEGER NOT NULL,
 	report_route INTEGER NOT NULL,
-	report_station INTEGER NOT NULL,
+	report_station INTEGER NOT NULL DEFAULT 0,
 	report_date DATE NOT NULL DEFAULT CURRENT_DATE,
 	report_time TIME NOT NULL DEFAULT CURRENT_TIME,
 	report_body VARCHAR(1000) NOT NULL,
 	report_status VARCHAR(11) NOT NULL DEFAULT 'Sin validar',
+	report_coord_x VARCHAR(60) NOT NULL,
+	report_coord_y VARCHAR(60) NOT NULL,
 	CONSTRAINT pk_report PRIMARY KEY(report_id),
 	CONSTRAINT fk_reports_users FOREIGN KEY(report_user)
 		REFERENCES users(user_id) ON UPDATE CASCADE,
@@ -202,9 +204,9 @@ CREATE TABLE reports(
 	CONSTRAINT fk_reports_lines FOREIGN KEY(report_line)
 		REFERENCES lines(line_id) ON UPDATE CASCADE,
 	CONSTRAINT fk_reports_routes FOREIGN KEY(report_route)
-		REFERENCES routes(route_id) ON UPDATE CASCADE,
+		REFERENCES routes(route_id) ON UPDATE CASCADE/*,
 	CONSTRAINT fk_reports_stations FOREIGN KEY(report_station)
-		REFERENCES stations(station_id) ON UPDATE CASCADE
+		REFERENCES stations(station_id) ON UPDATE CASCADE*/
 );
 
 /*Evidencias*/
