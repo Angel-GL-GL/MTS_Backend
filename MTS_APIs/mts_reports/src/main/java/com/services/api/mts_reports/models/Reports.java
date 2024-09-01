@@ -33,5 +33,9 @@ public class Reports {
     private String body;
     @Column(name = "report_status")
     private String status;
+    @Column(name = "report_coord_x")
+    private String x;
+    @Column(name = "report_coord_y")
+    private String y;
 
 }
