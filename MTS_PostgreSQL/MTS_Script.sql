@@ -206,7 +206,7 @@ CREATE TABLE reports(
 	CONSTRAINT fk_reports_routes FOREIGN KEY(report_route)
 		REFERENCES routes(route_id) ON UPDATE CASCADE/*,
 	CONSTRAINT fk_reports_stations FOREIGN KEY(report_station)
-		REFERENCES stations(station_id) ON UPDATE CASCADE*/
+		REFERENCES stations(station_id) ON UPDATE CASCADE*/ 
 );
 
 /*Evidencias*/
