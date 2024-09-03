@@ -146,16 +146,13 @@ CREATE TABLE supervisors(
 CREATE TABLE opinions(
 	opinion_id SERIAL NOT NULL,
 	opinion_user INTEGER NOT NULL,
-	opinion_station INTEGER NOT NULL,
 	opinion_date DATE NOT NULL DEFAULT CURRENT_DATE,
 	opinion_time TIME NOT NULL DEFAULT CURRENT_TIME,
 	opinion_body VARCHAR(1000) NOT NULL,
-	opinion_type VARCHAR(10) NOT NULL,
+	opinion_type VARCHAR(30) NOT NULL,
 	CONSTRAINT pk_opinion PRIMARY KEY(opinion_id),
 	CONSTRAINT fk_opinions_users FOREIGN KEY(opinion_user)
-		REFERENCES users(user_id) ON UPDATE CASCADE,
-	CONSTRAINT fk_opinions_stations FOREIGN KEY(opinion_station)
-		REFERENCES stations(station_id) ON UPDATE CASCADE
+		REFERENCES users(user_id) ON UPDATE CASCADE
 );
 
 /*Match de Comentarios con Líneas*/
@@ -267,7 +264,7 @@ SELECT * FROM stations;
 
 SELECT * FROM stations WHERE station_line=6;
 
-SELECT station_id, station_name, station_line FROM stations WHERE station_name='Chapultepec';
+SELECT station_id, station_name, station_line FROM stations WHERE station_name='Santa Marta';
 
 INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,supervisor_line,supervisor_station) 
 	VALUES('1111111111',2,'0000000000',1,1),('2222222222',3,'0000000000',1,2);
