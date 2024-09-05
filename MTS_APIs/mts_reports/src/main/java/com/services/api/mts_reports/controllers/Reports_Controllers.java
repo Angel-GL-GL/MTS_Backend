@@ -1,7 +1,9 @@
 package com.services.api.mts_reports.controllers;
 
 import com.services.api.mts_reports.models.Helper;
+import com.services.api.mts_reports.models.REM;
 import com.services.api.mts_reports.models.Reports;
+import com.services.api.mts_reports.services.REM_Service;
 import com.services.api.mts_reports.services.Reports_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ import java.util.List;
 public class Reports_Controllers {
     @Autowired
     private Reports_Service service;
+    @Autowired
+    private REM_Service rservice;
 
     //Obtener todos los reportes
     @RequestMapping(value = "api/reports", method = RequestMethod.GET)
@@ -122,6 +126,20 @@ public class Reports_Controllers {
         ));
     }
 
+
+    //Obtener reportes de una evidencia
+    @RequestMapping(value = "api/evidences/{evidence}/reports", method = RequestMethod.GET)
+    private ResponseEntity<List<Reports>> getReportByEvidence(@PathVariable Integer evidence){
+        List<REM> rems = rservice.getREMSbyEvidence(evidence);
+        if(rems.isEmpty()) return ResponseEntity.ok(new ArrayList<>());
+        ArrayList<Reports> evidences = new ArrayList<>();
+        for(REM rem:rems){
+            Reports report = service.getReport(rem.getEvidence());
+            if(report.getId().equals(rem.getEvidence())) evidences.add(report);
+        }
+        return ResponseEntity.ok(evidences);
+    }
+    
     //Actualizar status
     @RequestMapping(value = "api/reports/update/status", method = RequestMethod.PUT)
     private boolean updateStatus(@RequestBody Reports reports){
