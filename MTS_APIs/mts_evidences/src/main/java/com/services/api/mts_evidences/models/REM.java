@@ -17,5 +17,5 @@ public class REM {
     @Column(name = "rem_evidence")
     private Integer evidence;
     @Column(name = "rem_supervisor")
-    private Integer supervisor;
+    private String supervisor;
 }

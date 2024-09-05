@@ -35,7 +35,7 @@ public class REM_Service {
     }
 
     //REMS por supervisor
-    public List<REM> getREMSbySupervisor(Integer supervisor){
+    public List<REM> getREMSbySupervisor(String supervisor){
         List<REM> res = repository.findBySupervisor(supervisor);
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(REM::getId));

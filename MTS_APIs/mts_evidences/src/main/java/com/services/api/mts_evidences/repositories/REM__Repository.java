@@ -8,6 +8,6 @@ public interface REM__Repository extends JpaRepository<REM,Integer>{
     //SELECT * FROM reports_evidences_match WHERE rem_report = ?;
     List<REM> findByReport(Integer report);
     //SELECT * FROM reports_evidences_match WHERE rem_supervisor = ?;
-    List<REM> findBySupervisor(Integer supervisor);
+    List<REM> findBySupervisor(String supervisor);
 
 }

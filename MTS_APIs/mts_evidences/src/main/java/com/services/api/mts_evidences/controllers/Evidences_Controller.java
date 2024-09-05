@@ -44,9 +44,17 @@ public class Evidences_Controller {
         return ResponseEntity.ok(service.getEvidence(evidence));
     }
 
+    //Obtener evidencia de un reporte
+    @RequestMapping(value = "api/reports/{report}/evidences", method = RequestMethod.GET)
+    private ResponseEntity<Evidences> getEvidenceByReport(@PathVariable Integer report){
+        REM rem = rservice.getREMbyReport(report);
+        if(!rem.getReport().equals(report)) return ResponseEntity.ok(new Evidences());
+        return ResponseEntity.ok(service.getEvidence(rem.getEvidence()));
+    }
+
     //Obtener evidencias por supervisor
     @RequestMapping(value = "api/supervisor/{supervisor}/evidences", method = RequestMethod.GET)
-    private ResponseEntity<List<Evidences>> getEvidencesBySupervisor(@PathVariable Integer supervisor){
+    private ResponseEntity<List<Evidences>> getEvidencesBySupervisor(@PathVariable String supervisor){
         List<REM> rems = rservice.getREMSbySupervisor(supervisor);
         if(rems.isEmpty()) return ResponseEntity.ok(new ArrayList<>());
         ArrayList<Evidences> evidences = new ArrayList<>();
