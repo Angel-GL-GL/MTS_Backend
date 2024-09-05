@@ -1,10 +1,15 @@
 package com.services.api.mts_evidences.services;
 
+import com.services.api.mts_evidences.models.Evidences;
 import com.services.api.mts_evidences.models.REM;
 import com.services.api.mts_evidences.repositories.REM__Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -23,19 +28,10 @@ public class REM_Service {
     }
 
     //REMS por reporte
-    public List<REM> getREMSbyReport(Integer report){
+    public REM getREMbyReport(Integer report){
         List<REM> res = repository.findByReport(report);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(REM::getId));
-        return res;
-    }
-
-    //REMS por evidencia
-    public List<REM> getREMSbyEvidence(Integer evidence){
-        List<REM> res = repository.findByEvidence(evidence);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(REM::getId));
-        return res;
+        if(res.isEmpty()) return new REM();
+        return res.get(0);
     }
 
     //REMS por supervisor

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -45,5 +46,15 @@ public class Evidences_Service {
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(Evidences::getId));
         return res;
+    }
+
+    //Agregar fecha y hora de envío
+    public boolean addShipmentData(Integer id, LocalDate shDate, LocalTime shTime){
+        Evidences evidences = getEvidence(id);
+        if(!evidences.getId().equals(id)) return false;
+        evidences.setShdate(shDate);
+        evidences.setShtime(shTime);
+        repository.save(evidences);
+        return true;
     }
 }

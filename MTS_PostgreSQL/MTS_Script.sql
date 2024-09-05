@@ -137,9 +137,7 @@ CREATE TABLE supervisors(
 	CONSTRAINT fk_supervisors_administrators FOREIGN KEY(supervisor_admin)
 		REFERENCES administrators(admin_id) ON UPDATE CASCADE,
 	CONSTRAINT fk_supervisors_lines FOREIGN KEY(supervisor_line)
-		REFERENCES lines(line_id) ON UPDATE CASCADE,
-	CONSTRAINT fk_supervisors_stations FOREIGN KEY(supervisor_station)
-		REFERENCES stations(station_id) ON UPDATE CASCADE
+		REFERENCES lines(line_id) ON UPDATE CASCADE
 );
 
 /*Comentarios*/

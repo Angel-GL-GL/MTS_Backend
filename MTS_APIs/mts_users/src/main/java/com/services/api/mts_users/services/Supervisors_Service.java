@@ -39,12 +39,12 @@ public class Supervisors_Service {
         return new ArrayList<>();
     }
     //guardar
-    public boolean setSupervisor(Supervisors supervisors){
-        if(repository.existsByStation(supervisors.getStation())) return false;
-        if(repository.existsByUser(supervisors.getUser())) return false;
-        if(repository.existsBySup(supervisors.getSup())) return false;
+    public String setSupervisor(Supervisors supervisors){
+        if(repository.existsByStation(supervisors.getStation())) return " ";
+        if(repository.existsByUser(supervisors.getUser())) return " ";
+        if(repository.existsBySup(supervisors.getSup())) return " ";
         repository.save(supervisors);
-        return true;
+        return supervisors.getSup();
     }
     //actualizar
     public boolean updateSupervisor(Supervisors supervisors){
