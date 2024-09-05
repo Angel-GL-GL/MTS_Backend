@@ -122,7 +122,7 @@ CREATE TABLE administrators(
 		REFERENCES users(user_id) ON UPDATE CASCADE,
 	CONSTRAINT fk_administrators_transports FOREIGN KEY(admin_transport)
 		REFERENCES transports(transport_name) ON UPDATE CASCADE
-);
+); 
 
 /*Supervisores*/
 CREATE TABLE supervisors(

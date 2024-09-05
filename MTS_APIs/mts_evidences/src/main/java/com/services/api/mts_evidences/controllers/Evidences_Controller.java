@@ -56,11 +56,9 @@ public class Evidences_Controller {
         }
         return ResponseEntity.ok(evidences);
     }
-
-    //Obtener evidencia por reporte
-    @RequestMapping(value = "api/reports/{report}/evidences", method = RequestMethod.GET)
-    private ResponseEntity<Evidences> getEvidenceByReport(@PathVariable Integer report){
-        REM rem = rservice.getREMbyReport(report);
-        return ResponseEntity.ok(service.getEvidence(rem.getEvidence()));
+    //Guardar match
+    @RequestMapping(value = "api/evidences/rem", method = RequestMethod.POST)
+    private boolean createREM(@RequestBody REM rem){
+        return rservice.create(rem);
     }
 }

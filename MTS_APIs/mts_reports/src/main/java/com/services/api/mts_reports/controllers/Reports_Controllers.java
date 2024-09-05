@@ -139,7 +139,7 @@ public class Reports_Controllers {
         }
         return ResponseEntity.ok(evidences);
     }
-    
+
     //Actualizar status
     @RequestMapping(value = "api/reports/update/status", method = RequestMethod.PUT)
     private boolean updateStatus(@RequestBody Reports reports){
