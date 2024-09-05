@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface Evidences_Repository extends JpaRepository<Evidences,Integer>{
     //SELECT * FROM evidences WHERE evidence_creation_date = ?;
-    List<Evidences> findByCrtime(LocalDate date);
+    List<Evidences> findByCrdate(LocalDate date);
     //SELECT * FROM evidences WHERE evidence_shipment_date = ?;
-    List<Evidences> findByShtime(LocalDate date);
+    List<Evidences> findByShdate(LocalDate date);
 }
