@@ -130,6 +130,7 @@ public class Reports_Controllers {
     //Obtener reportes de una evidencia
     @RequestMapping(value = "api/evidences/{evidence}/reports", method = RequestMethod.GET)
     private ResponseEntity<List<Reports>> getReportByEvidence(@PathVariable Integer evidence){
+        System.out.println(evidence);
         List<REM> rems = rservice.getREMSbyEvidence(evidence);
         if(rems.isEmpty()) return ResponseEntity.ok(new ArrayList<>());
         ArrayList<Reports> evidences = new ArrayList<>();
