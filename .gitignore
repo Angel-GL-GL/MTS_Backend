@@ -20,3 +20,4 @@ buildNumber.properties
 MTS_APIs/mts_slt/src/main/resources/application.properties
 MTS_APIs/mts_users/src/main/resources/application.properties
 MTS_APIs/mts_reports/src/main/resources/application.properties
+MTS_APIs/mts_evidences/src/main/resources/application.properties
