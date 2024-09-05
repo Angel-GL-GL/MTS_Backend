@@ -331,4 +331,37 @@ api/user/{user}/reports/search | POST | Retrieves all the reports of a user on a
 ## Endpoints Evidences API
 Endpoint | Method | Description
 | :---        |    :----:   |          :--- |
-/ | _ | .
+api/evidences | GET | .
+api/evidences/register | POST | .
+api/evidences/register/shipment | PUT | .
+api/evidences/{evidence} | GET | .
+api/reports/{report}/evidences | GET | .
+api/supervisor/{supervisor}/evidences | GET | .
+api/evidences/rem | POST | .
+
+### Structure of api/evidences/register
+```shell
+{
+        "crdate": "YYYY-MM-DD",
+        "crtime": "HH:MM:SS",
+        "shdate": "2000-01-01",
+        "shtime": "00:00:00",
+        "body": ""
+}
+```
+### Structure of api/evidences/register/shipment
+```shell
+{
+        "id": 0,
+        "shdate": "YYYY-MM-DD",
+        "shtime": "HH:MM:SS"
+}
+```
+### Structure of api/evidences/rem
+```shell
+{
+        "report": 0,
+        "evidence": 0,
+        "supervisor": ""
+}
+```
