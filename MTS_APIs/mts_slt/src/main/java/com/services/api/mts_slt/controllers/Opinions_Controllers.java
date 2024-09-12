@@ -40,8 +40,8 @@ public class Opinions_Controllers {
         OSMs osms = osmss.getOSMByOpinion(res.getId());
         OLMs olms = olmss.getOLMByOpinion(res.getId());
         boolean f2 = false;
-        if(osms.getOpinion().equals(res.getId())) f2 = osmss.delete(osms.getId());
-        else if(olms.getOpinion().equals(res.getId())) f2 = olmss.delete(olms.getId());
+        if(osms != null && osms.getOpinion() != null && osms.getOpinion().equals(res.getId())) f2 = osmss.delete(osms.getId());
+        else if(olms != null && olms.getOpinion() != null && olms.getOpinion().equals(res.getId())) f2 = olmss.delete(olms.getId());
         boolean f1 = service.delete(res.getId());
         return f1&&f2;
     }
