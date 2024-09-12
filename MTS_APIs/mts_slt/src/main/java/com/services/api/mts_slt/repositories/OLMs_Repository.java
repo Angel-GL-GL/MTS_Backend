@@ -7,5 +7,5 @@ public interface OLMs_Repository extends JpaRepository<OLMs,Integer>{
     //SELECT * FROM opinions_lines_match WHERE olm_opinion = ?;
     List<OLMs> findByOpinion(Integer line);
     //SELECT * FROM opinions_lines_match WHERE olm_line = ?;
-    List<OLMs> findByLines(Integer line);
+    List<OLMs> findByLine(Integer line);
 }

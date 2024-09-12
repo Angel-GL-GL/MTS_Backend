@@ -34,7 +34,7 @@ public class OLMs_Service {
     }
     //Obtiene OLMs por Estación
     public List<OLMs> getOLMsByLine(Integer line){
-        List<OLMs> res = repository.findByLines(line);
+        List<OLMs> res = repository.findByLine(line);
         if(res.isEmpty()) return new ArrayList<>();
         res.sort(Comparator.comparing(OLMs::getId));
         return res;
