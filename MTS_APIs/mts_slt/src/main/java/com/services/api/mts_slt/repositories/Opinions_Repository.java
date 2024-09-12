@@ -2,7 +2,6 @@ package com.services.api.mts_slt.repositories;
 
 import com.services.api.mts_slt.models.Opinions;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.time.LocalDate;
 import java.util.List;
 public interface Opinions_Repository extends JpaRepository<Opinions,Integer>{

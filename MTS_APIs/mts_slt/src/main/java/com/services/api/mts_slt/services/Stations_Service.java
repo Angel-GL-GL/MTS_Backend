@@ -21,7 +21,7 @@ public class Stations_Service {
         Optional<Stations> os = repository.findById(id);
         return os.orElseGet(Stations::new);
     }
-
+    //Estación por nombre y línea
     public Stations getStation(String name, Integer line){
         return repository.findByNameAndLine(name,line);
     }
