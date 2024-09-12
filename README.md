@@ -205,8 +205,16 @@ api/stations/incidents/{in} | GET | Retrieves all stations with the incident.
 api/stations/update/incident | PUT | Updates the incident of the station.
 api/stations/{station}/transfers | GET | Retrieves all transfers of a station.
 api/routes/{route}/transfers | GET | Retrieves all the transfers of a route.
-api/stations/{station}/schedules | GET | Retrieves all the schedules of the station.
-api/routes/{route}/schedules | GET | Retrieves all the schedules of the route.
+api/stations/{station}/schedules | GET | Retrieves all the schedules of a station.
+api/routes/{route}/schedules | GET | Retrieves all the schedules of a route.
+api/stations/{station}/opinions | POST | Registers an opinion at a station.
+api/lines/{line}/opinions | POST | Registers an opinion at a line.
+api/stations/{station}/opinions | GET | Retrieves all the opinions of a station.
+api/lines/{line}/opinions | GET | Retrieves all the opinions of a line.
+api/opinions | PUT | Updates an opinion.
+api/opinions | DELETE | Deletes an opinion.
+api/user/{user}/opinions | GET | Retrieves all the opinions of a user.
+api/opinions/date | GET | Retrieves all the opinions on a given date.
 
 ### Structure of api/lines/update/incident
 ```shell
