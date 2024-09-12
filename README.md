@@ -211,7 +211,7 @@ api/stations/{station}/opinions | POST | Registers an opinion at a station.
 api/lines/{line}/opinions | POST | Registers an opinion at a line.
 api/stations/{station}/opinions | GET | Retrieves all the opinions of a station.
 api/lines/{line}/opinions | GET | Retrieves all the opinions of a line.
-api/opinions | PUT | Updates an opinion.
+api/opinions | PUT | Updates the body and type of an opinion.
 api/opinions | DELETE | Deletes an opinion.
 api/user/{user}/opinions | GET | Retrieves all the opinions of a user.
 api/opinions/date | GET | Retrieves all the opinions on a given date.
