@@ -240,6 +240,48 @@ api/opinions/date | GET | Retrieves all the opinions on a given date.
 }
 ```
 
+### Structure of api/sign-in
+```shell
+{
+    "email": "",
+    "password": ""
+}
+```
+
+### Structure of api/stations/{station}/opinions and api/lines/{line}/opinions
+```shell
+{
+    "user": 0,
+    "date": "YYYY-MM-DD",
+    "time": "HH:MM:SS",
+    "body": "",
+    "type": "Sugerencia/Queja/Agradecimiento"
+}
+```
+
+### Structure of api/opinions UPDATE
+```shell
+{
+    "id": 0,
+    "body": "",
+    "type": "Sugerencia/Queja/Agradecimiento"
+}
+```
+
+### Structure of api/opinions DELETE
+```shell
+{    
+    "id": 0
+}
+```
+
+### Structure of api/opinions/date
+```shell
+{    
+    "date": "YYYY-MM-DD"
+}
+```
+
 ## Endpoints Reports API
 Endpoint | Method | Description
 | :---        |    :----:   |          :--- |
