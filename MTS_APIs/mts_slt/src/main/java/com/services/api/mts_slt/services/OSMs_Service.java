@@ -27,11 +27,10 @@ public class OSMs_Service {
         return os.orElseGet(OSMs::new);
     }
     //Obtiene OSM por Opinion
-    public List<OSMs> getOSMByOpinion(Integer opinion){
+    public OSMs getOSMByOpinion(Integer opinion){
         List<OSMs> res = repository.findByOpinion(opinion);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(OSMs::getId));
-        return res;
+        if(res.isEmpty()) return new OSMs();
+        return res.get(0);
     }
     //Obtiene OSMs por Estación
     public List<OSMs> getOSMsByStation(Integer station){

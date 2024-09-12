@@ -76,6 +76,20 @@ public class Opinions_Service {
         res.sort(Comparator.comparing(Opinions::getId));
         return res;
     }
+    //Obtiene Opiniones por usuario, tipo y fecha, además de comprobar que tengan el mismo body
+    public Opinions getOpinionByUserAndTypeAndDate(Integer user, String type, LocalDate date, String body){
+        List<Opinions> res = repository.findByUserAndTypeAndDate(user,type,date);
+        Opinions opinions = new Opinions();
+        if(res.isEmpty()) return opinions;
+        res.sort(Comparator.comparing(Opinions::getId));
+        for(Opinions op: res){
+            if(op.getBody().equals(body)){
+                opinions = op;
+                break;
+            }
+        }
+        return opinions;
+    }
     //Actualizar
     public void update(Opinions opinions){
         repository.save(opinions);

@@ -27,11 +27,10 @@ public class OLMs_Service {
         return os.orElseGet(OLMs::new);
     }
     //Obtiene OLM por Opinion
-    public List<OLMs> getOLMByOpinion(Integer opinion){
+    public OLMs getOLMByOpinion(Integer opinion){
         List<OLMs> res = repository.findByOpinion(opinion);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(OLMs::getId));
-        return res;
+        if(res.isEmpty()) return new OLMs();
+        return res.get(0);
     }
     //Obtiene OLMs por Estación
     public List<OLMs> getOLMsByLine(Integer line){
