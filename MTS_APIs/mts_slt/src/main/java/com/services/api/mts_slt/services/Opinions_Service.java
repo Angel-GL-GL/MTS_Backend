@@ -35,12 +35,12 @@ public class Opinions_Service {
         return res;
     }
     //Obtiene Opiniones por tipo
-    public List<Opinions> getOpinionByType(String type){
-        List<Opinions> res = repository.findByType(type);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Opinions::getId));
-        return res;
-    }
+//    public List<Opinions> getOpinionByType(String type){
+//        List<Opinions> res = repository.findByType(type);
+//        if(res.isEmpty()) return new ArrayList<>();
+//        res.sort(Comparator.comparing(Opinions::getId));
+//        return res;
+//    }
     //Obtiene Opiniones por fecha
     public List<Opinions> getOpinionByDate(LocalDate date){
         List<Opinions> res = repository.findByDate(date);
@@ -49,33 +49,33 @@ public class Opinions_Service {
         return res;
     }
     //Obtiene Opiniones por usuario y tipo
-    public List<Opinions> getOpinionByUserAndType(Integer user, String type){
-        List<Opinions> res = repository.findByUserAndType(user, type);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Opinions::getId));
-        return res;
-    }
+//    public List<Opinions> getOpinionByUserAndType(Integer user, String type){
+//        List<Opinions> res = repository.findByUserAndType(user, type);
+//        if(res.isEmpty()) return new ArrayList<>();
+//        res.sort(Comparator.comparing(Opinions::getId));
+//        return res;
+//    }
     //Obtiene Opiniones por usuario y fecha
-    public List<Opinions> getOpinionByUserAndDate(Integer user, LocalDate date){
-        List<Opinions> res = repository.findByUserAndDate(user,date);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Opinions::getId));
-        return res;
-    }
+//    public List<Opinions> getOpinionByUserAndDate(Integer user, LocalDate date){
+//        List<Opinions> res = repository.findByUserAndDate(user,date);
+//        if(res.isEmpty()) return new ArrayList<>();
+//        res.sort(Comparator.comparing(Opinions::getId));
+//        return res;
+//    }
     //Obtiene Opiniones por tipo y fecha
-    public List<Opinions> getOpinionByTypeAndDate(String type, LocalDate date){
-        List<Opinions> res = repository.findByTypeAndDate(type,date);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Opinions::getId));
-        return res;
-    }
+//    public List<Opinions> getOpinionByTypeAndDate(String type, LocalDate date){
+//        List<Opinions> res = repository.findByTypeAndDate(type,date);
+//        if(res.isEmpty()) return new ArrayList<>();
+//        res.sort(Comparator.comparing(Opinions::getId));
+//        return res;
+//    }
     //Obtiene Opiniones por usuario, tipo y fecha
-    public List<Opinions> getOpinionByUserAndTypeAndDate(Integer user, String type, LocalDate date){
-        List<Opinions> res = repository.findByUserAndTypeAndDate(user,type,date);
-        if(res.isEmpty()) return new ArrayList<>();
-        res.sort(Comparator.comparing(Opinions::getId));
-        return res;
-    }
+//    public List<Opinions> getOpinionByUserAndTypeAndDate(Integer user, String type, LocalDate date){
+//        List<Opinions> res = repository.findByUserAndTypeAndDate(user,type,date);
+//        if(res.isEmpty()) return new ArrayList<>();
+//        res.sort(Comparator.comparing(Opinions::getId));
+//        return res;
+//    }
     //Obtiene Opiniones por usuario, tipo y fecha, además de comprobar que tengan el mismo body
     public Opinions getOpinionByUserAndTypeAndDate(Integer user, String type, LocalDate date, String body){
         List<Opinions> res = repository.findByUserAndTypeAndDate(user,type,date);
