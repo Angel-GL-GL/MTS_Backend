@@ -331,13 +331,13 @@ api/user/{user}/reports/search | POST | Retrieves all the reports of a user on a
 ## Endpoints Evidences API
 Endpoint | Method | Description
 | :---        |    :----:   |          :--- |
-api/evidences | GET | .
-api/evidences/register | POST | .
-api/evidences/register/shipment | PUT | .
-api/evidences/{evidence} | GET | .
-api/reports/{report}/evidences | GET | .
-api/supervisor/{supervisor}/evidences | GET | .
-api/evidences/rem | POST | .
+api/evidences | GET | Retrieves all evidences.
+api/evidences/register | POST | Creates a evidence.
+api/evidences/register/shipment | PUT | Updates the shipment date and time.
+api/evidences/{evidence} | GET | Retrieves a evidence.
+api/reports/{report}/evidences | GET | Retrieves a evidence by ID Report.
+api/supervisor/{supervisor}/evidences | GET | Retrieves all evidences by ID supervisor.
+api/evidences/rem | POST | Creates a REM register.
 
 ### Structure of api/evidences/register
 ```shell
