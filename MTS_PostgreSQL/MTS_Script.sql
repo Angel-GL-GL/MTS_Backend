@@ -249,6 +249,9 @@ SELECT * FROM transports;
 
 SELECT * FROM lines;
 
+INSERT INTO lines(line_name,line_transport,line_incident,line_speed,line_information)
+	VALUES('3','Cablebús','-',21.60,'La Línea 3 facilita el acceso a diversas instituciones culturales, tales como la Cineteca Nacional, actualmente en construcción en la Cuarta Sección del Bosque de Chapultepec; la Bodega Nacional de Arte; la ex Fábrica de Pólvora; el Parque de Cultura Urbana (PARCUR); el Centro de Cultura Ambiental; y Los Pinos.')
+
 INSERT INTO administrators(admin_id,admin_user,admin_transport) 
 	VALUES('0000000000',4,'Sistema de Transporte Colectivo Metro');
 
@@ -256,9 +259,27 @@ SELECT * FROM administrators;
 
 SELECT * FROM routes;
 
+INSERT INTO routes(route_name,route_line,route_price)
+	VALUES('Los Pinos/Constituyentes a Vasco de Quiroga',59,7);
+
 SELECT * FROM schedules;
 
-SELECT * FROM stations;
+INSERT INTO schedules(schedule_open_hour,schedule_close_hour,schedule_day,schedule_route)
+	VALUES('05:00:00','23:00:00','Lunes a Viernes',201),
+	('06:00:00','23:00:00','Sábado',201),
+	('07:00:00','23:00:00','Domingo y días festivos',201);
+
+SELECT * FROM stations ORDER BY station_id;
+
+INSERT INTO stations(station_name,station_line,station_incident,station_services,station_information)
+	VALUES('Los Pinos/Constituyentes',59,'-','-','-'),
+	('Panteón de Dolores',59,'-','-','-'),
+	('Charrería',59,'-','-','-'),
+	('Parcur/Colegio de Arquitectos',59,'-','-','-'),
+	('Cineteca Chapultepec/Bodega de Arte',59,'-','-','-'),
+	('Vasco de Quiroga',59,'-','-','-');
+
+DELETE FROM stations WHERE station_id>514;
 
 SELECT * FROM stations WHERE station_line=6;
 
@@ -270,6 +291,9 @@ INSERT INTO supervisors(supervisor_id,supervisor_user,supervisor_admin,superviso
 SELECT * FROM supervisors;
 
 SELECT * FROM routes_stations_match;
+
+INSERT INTO routes_stations_match(rsm_route,rsm_station)
+	VALUES(201,509),(201,510),(201,511),(201,512),(201,513),(201,514);
 
 SELECT station_name
 FROM stations
