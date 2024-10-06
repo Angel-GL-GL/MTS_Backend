@@ -240,14 +240,6 @@ api/opinions/date | GET | Retrieves all the opinions on a given date.
 }
 ```
 
-### Structure of api/sign-in
-```shell
-{
-    "email": "",
-    "password": ""
-}
-```
-
 ### Structure of api/stations/{station}/opinions and api/lines/{line}/opinions
 ```shell
 {
