@@ -1,8 +1,8 @@
 package com.services.api.mts_users.controllers;
 
 import com.services.api.mts_users.models.Helper;
+import com.services.api.mts_users.models.Helper_EU;
 import com.services.api.mts_users.models.Supervisors;
-import com.services.api.mts_users.models.Users;
 import com.services.api.mts_users.services.Supervisors_Service;
 import com.services.api.mts_users.services.Users_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,9 @@ public class Supervisors_Controllers {
     }
     //Login
     @RequestMapping(value = "api/supervisor/sign-in", method = RequestMethod.POST)
-    private ResponseEntity<Users> login(@RequestBody Helper supervisor){
+    private ResponseEntity<Helper_EU> login(@RequestBody Helper supervisor){
         Supervisors supervisors = service.getSup(supervisor.getId());
-        return ResponseEntity.ok(user_service.getUser(supervisors.getUser(),supervisor.getPassword()));
+        return ResponseEntity.ok(user_service.getUser(supervisors.getUser(),supervisor.getPassword(),1));
     }
     //Update
     @RequestMapping(value = "api/supervisor/update/profile",method = RequestMethod.PUT)

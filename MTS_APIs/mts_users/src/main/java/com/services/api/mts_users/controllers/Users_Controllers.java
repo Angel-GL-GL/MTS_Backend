@@ -1,11 +1,13 @@
 package com.services.api.mts_users.controllers;
 
+import com.services.api.mts_users.models.Helper_EU;
 import com.services.api.mts_users.models.Users;
 import com.services.api.mts_users.services.Users_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
 
 @RestController
 public class Users_Controllers {
@@ -19,16 +21,17 @@ public class Users_Controllers {
     }
     //Login
     @RequestMapping(value = "api/sign-in", method = RequestMethod.POST)
-    private ResponseEntity<Users> login(@RequestBody Users user){
-        return ResponseEntity.ok(service.getUser(user.getEmail(),user.getPassword()));
+    private ResponseEntity<Helper_EU> login(@RequestBody Users user){
+        return ResponseEntity.ok(service.getUser(user.getEmail(),user.getPassword(),1));
     }
     //Update
     @RequestMapping(value = "api/update/profile",method = RequestMethod.PUT)
     private boolean update(@RequestBody Users user){
-        Users res = service.getUser(user.getEmail(),user.getPassword());
-        if(!user.getEmail().equals(res.getEmail())) return false;
-        user.setCurp(res.getCurp());
-        user.setId(res.getId());
+        Helper_EU res = service.getUser(user.getEmail(),user.getPassword(), 0);
+        Users userbd = res.getUsuario();
+        if(!user.getEmail().equals(userbd.getEmail())) return false;
+        user.setCurp(userbd.getCurp());
+        user.setId(userbd.getId());
         return service.updateUser(user);
     }
     //Get user
