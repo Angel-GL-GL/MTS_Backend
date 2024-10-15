@@ -60,8 +60,8 @@ public class Users_Service {
         if(repository.existsByEmail(user.getEmail())) return false;
         emailService.sendWelcomeEmail(
                 user.getEmail(),
-                "Bienvenido a nuestro E-commerce",
-                "Querido " + user.getName() + ",\n\nGracias por registrarce a nuestra e-commerce. Emocionados de que uses nuestra plataforma :D!\n\nGracias,\nEl equipo de E-commerce"
+                "Bienvenido a MTS",
+                "Querido " + user.getName() + ",\n\nGracias por registrarce a nuestra app !!!!!\n\nGracias,\nEl equipo de MTS (>w<)7"
         );
         repository.save(user);
         return true;
