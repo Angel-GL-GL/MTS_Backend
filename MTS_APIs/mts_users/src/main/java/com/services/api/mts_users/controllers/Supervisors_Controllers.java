@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Random;
 
 @RestController
@@ -50,8 +51,8 @@ public class Supervisors_Controllers {
         if(band) return service.deleteSupervisor(supervisors);
         return false;
     }
-//    @RequestMapping(value = "api/supervisors", method = RequestMethod.GET)
-//    private ResponseEntity<List<Supervisors>> get(){
-//        return ResponseEntity.ok(service.getAllSupervisors());
-//    }
+    @RequestMapping(value = "api/supervisors", method = RequestMethod.GET)
+    private ResponseEntity<List<Supervisors>> get(){
+        return ResponseEntity.ok(service.getAllSupervisors());
+    }
 }

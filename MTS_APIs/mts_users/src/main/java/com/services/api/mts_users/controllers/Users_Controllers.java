@@ -43,6 +43,12 @@ public class Users_Controllers {
         return service.deleteUsers(user);
     }
 
+    //TodosUsuarios
+    @RequestMapping(value = "api/users", method = RequestMethod.GET)
+    private ResponseEntity<List<Users>> getAll(){
+        return ResponseEntity.ok(service.getAllUsers());
+    }
+
     //    //Login-supervisor_admin-support
 //    @RequestMapping(value = "api/sup/sign-in", method = RequestMethod.POST)
 //    private ResponseEntity<Users> login_support(@RequestBody Users user){
