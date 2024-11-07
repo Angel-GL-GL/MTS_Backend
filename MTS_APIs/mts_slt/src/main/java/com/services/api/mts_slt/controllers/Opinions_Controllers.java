@@ -88,7 +88,7 @@ public class Opinions_Controllers {
         List<OSMs> osms = osmss.getOSMsByStation(station);
         if(osms.isEmpty()) return ResponseEntity.ok(new ArrayList<>());
         ArrayList<Opinions> opinions = new ArrayList<>();
-        for(OSMs osm: osms) opinions.add(service.getOpinions(osm.getId()));
+        for(OSMs osm: osms) opinions.add(service.getOpinions(osm.getOpinion()));
         return ResponseEntity.ok(opinions);
     }
 
@@ -98,7 +98,7 @@ public class Opinions_Controllers {
         List<OLMs> olms = olmss.getOLMsByLine(line);
         if(olms.isEmpty()) return ResponseEntity.ok(new ArrayList<>());
         ArrayList<Opinions> opinions = new ArrayList<>();
-        for(OLMs olm: olms) opinions.add(service.getOpinions(olm.getId()));
+        for(OLMs olm: olms) opinions.add(service.getOpinions(olm.getOpinion()));
         return ResponseEntity.ok(opinions);
     }
 
